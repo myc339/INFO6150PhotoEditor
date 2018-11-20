@@ -23,4 +23,5 @@ we consider to build our user system more widely. After consumption, the user ca
 -- Photo Effect & Beauty<br/>
 -- Sticker<br/>
 -- Collage<br/>
+## Domain Model:
 ![Image text](https://github.com/neu-mis-info6150-fall-2018/final-project-cgfz/blob/master/domain_model_image/domain_model.svg)
