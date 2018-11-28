@@ -24,3 +24,14 @@ we consider to build our user system more widely. After consumption, the user ca
 -- Sticker
 -- Collage
 
+
+
+How to run app.js
+in app_final_image_editor directory:
+npm install express body-parser mongoose --save
+npm install cors --save
+node app.js to run back-end server
+
+then run fron-end server in angular-final-image-editor directory:
+ng serve --open
+
