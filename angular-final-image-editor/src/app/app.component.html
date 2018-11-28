@@ -3,8 +3,11 @@
 
 <div id="editor_bar">
 
-  <input  type="text" [(ngModel)]="account"(change)="check_account()" />
-  <label  class="img_label2"  >Log In
+  <input *ngIf="!Authentication" type="text" [(ngModel)]="account"  />
+  <input *ngIf="!Authentication" type="text" [(ngModel)]="password"  />
+  <label    *ngIf="!Authentication" class="img_label2" (click)="authenticate()" >Log In
+  </label>
+  <label   class="img_label2" *ngIf="Authentication"  >{{account}}
   </label>
 
   <input id="img_input2" type="file" accept="image/*" (change)="upload($event)"  />

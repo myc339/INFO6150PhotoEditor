@@ -1,6 +1,7 @@
 import { Component,ElementRef,Renderer2} from '@angular/core';
 import { element } from '@angular/core/src/render3';
 import { HttpClient } from "@angular/common/http";
+import { forEach } from '@angular/router/src/utils/collection';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,10 +12,22 @@ export class AppComponent {
   requestURL = "http://localhost:3301/users";
   account:string="";
   UserData: UserResponse;
- 
-  check_account()
-  {
-    console.log(this.account)
+  password:string="";
+  Authentication:Boolean=false;
+  authenticate()
+  { 
+    
+    Object.keys(this.UserData).forEach(index=>{
+      const user=this.UserData[index];
+      if(user.account==this.account
+        &&user.password==this.password)
+          this.Authentication=true;
+          
+    });
+    if(this.Authentication==true)
+        console.log("log in successfully");
+        else
+        alert("user info error");
   }
   upload(event)
   {

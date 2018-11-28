@@ -8,7 +8,7 @@ require("./config/db");
 const app = express();
 var originsWhitelist = [
   'http://localhost:4200',      //this is my front-end url for development
-   'http://localhost:3301/users'
+   'http://localhost:3301'
 ];
 var corsOptions = {
   origin: function(origin, callback){
