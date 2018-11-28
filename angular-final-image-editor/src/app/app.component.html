@@ -1,0 +1,25 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+
+<div id="editor_bar">
+
+  <input  type="text" [(ngModel)]="account"(change)="check_account()" />
+  <label  class="img_label2"  >Log In
+  </label>
+
+  <input id="img_input2" type="file" accept="image/*" (change)="upload($event)"  />
+  <label for="img_input2" class="img_label2"  >Add Image
+  </label>
+  <label  class="img_label2" appAddImageDirective> Save Image</label>
+</div>
+
+<div id="mainframe">
+  <div class="edit">
+      <div class="editor_area" id="image_frame">
+
+      </div>
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>
