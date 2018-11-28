@@ -1,5 +1,7 @@
 // import { Component, OnInit } from '@angular/core';
 import { Component, ViewChild, Inject, OnInit } from '@angular/core';
+import { DispalyComponent } from '../dispaly/dispaly.component';
+import { from } from 'rxjs';
 
 // import { AngularCropperjsComponent } from 'angular-cropperjs';
 
@@ -48,7 +50,7 @@ export class UploadImgComponent implements OnInit{
       this.reset();
       reader.onload = function (e : any) {
           //$('#preview').attr('src', e.target.result);
-          console.log(e.target.result);
+          // console.log(e.target.result);
           this.imageUrl = e.target.result;
       }.bind(this);
 
