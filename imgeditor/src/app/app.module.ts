@@ -13,7 +13,7 @@ import { RotateComponent } from './rotate/rotate.component';
 import { MembershipMenuComponent } from './membership-menu/membership-menu.component';
 import { SaveComponent } from './save/save.component';
 import { MenubarComponent } from './menubar/menubar.component';
-
+// import { AngularCropperjsModule } from 'angular-cropperjs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +24,7 @@ import { MenubarComponent } from './menubar/menubar.component';
     ScaleComponent,
     CutComponent,
     RotateComponent,
+    
     MembershipMenuComponent,
     SaveComponent,
     MenubarComponent
