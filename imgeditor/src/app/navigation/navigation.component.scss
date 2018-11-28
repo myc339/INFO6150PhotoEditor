@@ -1,0 +1,31 @@
+#left{
+float: left;
+}
+
+#right{
+    float:right;
+}
+
+#UserButton{
+    width: 100%;
+    // border: 2px solid #388486;
+    // border-bottom-color: #388486;
+}
+a{
+    width: 150px;
+    float: right;
+    // border: 1px solid #388486;
+    text-align: center;
+}
+
+
+div{
+    height: 60px;
+    color: #388486;
+    
+}
+
+a:hover{
+    background-color:#388486;
+    color:#ffffff;
+}
