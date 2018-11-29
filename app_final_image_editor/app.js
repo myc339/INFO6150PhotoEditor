@@ -24,14 +24,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app
   .route("/users")
-  .get(taskController.listAllTasks)
-  .post(taskController.createNewTask);
+  .get(taskController.listAllUsers);
+ app
+ .route("/register")
+  .post(taskController.createNewUser);
 
 app
   .route("/users/:usersId")
-  .get(taskController.readTask)
-  .put(taskController.updateTask)
-  .delete(taskController.deleteTask);
+  .get(taskController.readUser)
+  .put(taskController.updateUser)
+  .delete(taskController.deleteUser);
+app
+  .route("/login")
+  .get(taskController.authenticate);
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
