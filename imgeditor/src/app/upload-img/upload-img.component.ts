@@ -1,5 +1,5 @@
 // import { Component, OnInit } from '@angular/core';
-import { Component, ViewChild, Inject, OnInit } from '@angular/core';
+import { Component, ViewChild, Inject, OnInit, ElementRef } from '@angular/core';
 import { DispalyComponent } from '../dispaly/dispaly.component';
 import { from } from 'rxjs';
 import { SharingdataService } from '../sharingdata.service';
@@ -13,7 +13,9 @@ import { SharingdataService } from '../sharingdata.service';
 })
 export class UploadImgComponent implements OnInit{
   imageUrl:any = null;
-  constructor(private sharingdata:SharingdataService) { }
+  canvas_width:any;
+  canvas_height:any;
+  constructor(private sharingdata:SharingdataService,private el:ElementRef) { }
 
   ngOnInit() {
     
@@ -36,6 +38,14 @@ export class UploadImgComponent implements OnInit{
           // console.log(e.target.result);
           this.imageUrl = e.target.result;
           this.sharingdata.imgUrl=this.imageUrl;
+          var image = new Image();
+          image.src = e.target.result;
+          
+          image.onload=()=>{
+            this.sharingdata.width=image.width;
+            this.sharingdata.height=image.height;
+          }
+          
       }.bind(this);
       
       

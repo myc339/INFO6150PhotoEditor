@@ -8,10 +8,10 @@ import { SharingdataService } from '../sharingdata.service';
 })
 export class DispalyComponent implements OnInit {
   imageUrl :any= "";
-  height:string="400px";
-  width:string="800px";
-  left:string="30px";
-  top:string="40px";
+  height:string="1600px";
+  width:string="2160px";
+  left:string="0px";
+  top:string="0px";
   
   constructor(private data:SharingdataService) { }
 

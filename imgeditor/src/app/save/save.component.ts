@@ -42,9 +42,9 @@ export class SaveComponent implements OnInit {
         
         });
         
-    this.downloadFile("image", this.canvasImg);
+    this.downloadFile(new Date(), this.canvasImg);
   }
-  
+
   downloadFile(filename, content) {
     var base64Img = content;
     var oA = document.createElement('a');
