@@ -1,9 +1,9 @@
+import { ImageInfo } from './../imageInfo';
+import { GetImageService } from './../get-image.service';
 // import { Component, OnInit } from '@angular/core';
 import { Component, ViewChild, Inject, OnInit, ElementRef } from '@angular/core';
 import { DispalyComponent } from '../dispaly/dispaly.component';
 import { from } from 'rxjs';
-
-import { GetImageService } from '../get-image.service';
 
 // import { AngularCropperjsComponent } from 'angular-cropperjs';
 
@@ -25,7 +25,7 @@ export class UploadImgComponent implements OnInit{
   }
   // cropperjs setting
 
-  imageUrl:any;
+  imageInfo:ImageInfo = new ImageInfo();
   // croppedImage = null;
   // //@ViewChild(AngularCropperjsComponent) angularCropper: AngularCropperjsComponent;
   // config = Object.assign({
@@ -37,7 +37,7 @@ export class UploadImgComponent implements OnInit{
   // });
 
   reset() {
-    this.imageUrl = null;
+    //this.imageInfo.image = null;
   }
   /**
    * 
@@ -46,22 +46,25 @@ export class UploadImgComponent implements OnInit{
   fileChangeEvent(fileInput: any) {
     if (fileInput.target.files && fileInput.target.files[0]) {
       var reader = new FileReader();
-      this.reset();
+      //this.reset();
       reader.onload = function (e : any) {
           //$('#preview').attr('src', e.target.result);
           // console.log(e.target.result);
-          this.imageUrl = e.target.result;
+          console.log(this.imageInfo);
+          this.imageInfo.image = e.target.result;
 
           var image = new Image();
           image.src = e.target.result;
-          
-//           image.onload=()=>{
-//             this.sharingdata.width=image.width;
-//             this.sharingdata.height=image.height;
-//           }
+          console.log(image.width);
+          image.onload=()=>{
+            console.log(image.width);
+            
+            this.imageInfo.width=image.width;
+            this.imageInfo.height=image.height;
+          }
           
 
-          this.service.getImage.emit(this.imageUrl);
+          this.service.getImage.emit(this.imageInfo);
 
       }.bind(this);
       

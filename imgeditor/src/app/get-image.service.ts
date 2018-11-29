@@ -1,11 +1,11 @@
+import { ImageInfo } from './imageInfo';
 import { Injectable, EventEmitter } from '@angular/core';
-
 @Injectable({
   providedIn: 'root'
 })
 export class GetImageService {
 
-  image:any = null;
+  imageInfo:ImageInfo;
   getImage: EventEmitter<any>
   constructor() {
     this.getImage = new EventEmitter();

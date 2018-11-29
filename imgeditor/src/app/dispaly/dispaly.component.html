@@ -1,9 +1,8 @@
 
-<div id="display" [ngStyle]="{'width': width,'height':height}" >
-  <input [(ngModel)]="width" />
-  <span></span>
-  <img *ngIf="data.imgUrl" [src]="data.imgUrl" [ngStyle]="{'width': width>data.width?data.width:width,'height':height>data.height?data.height:height
-,'left':left,'top':top}">
+<div id="display" [ngStyle]="{'width': width+'px','height':height+'px'}" >
+  <img *ngIf="imageInfo.image" [src]="imageInfo.image" [ngStyle]="{'width': (width>imageInfo.width?
+  imageInfo.width: width)+'px','height':(height>imageInfo.height?imageInfo.height:height)+'px'
+,'left':left+'px','top':top+'px'}">
   
 
     
