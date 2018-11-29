@@ -2,7 +2,8 @@
 import { Component, ViewChild, Inject, OnInit, ElementRef } from '@angular/core';
 import { DispalyComponent } from '../dispaly/dispaly.component';
 import { from } from 'rxjs';
-import { SharingdataService } from '../sharingdata.service';
+
+import { GetImageService } from '../get-image.service';
 
 // import { AngularCropperjsComponent } from 'angular-cropperjs';
 
@@ -12,15 +13,28 @@ import { SharingdataService } from '../sharingdata.service';
   styleUrls: ['./upload-img.component.scss']
 })
 export class UploadImgComponent implements OnInit{
-  imageUrl:any = null;
-  canvas_width:any;
-  canvas_height:any;
-  constructor(private sharingdata:SharingdataService,private el:ElementRef) { }
+
+
+
+  constructor(private service: GetImageService) { 
+  }
+
 
   ngOnInit() {
     
   }
   // cropperjs setting
+
+  imageUrl:any;
+  // croppedImage = null;
+  // //@ViewChild(AngularCropperjsComponent) angularCropper: AngularCropperjsComponent;
+  // config = Object.assign({
+  //   checkCrossOrigin: false,
+  //   zoomable: true,
+  //   zoom: function(value) {
+  //     this.zoomCallback(value);
+  //   }.bind(this)
+  // });
 
   reset() {
     this.imageUrl = null;
@@ -37,15 +51,18 @@ export class UploadImgComponent implements OnInit{
           //$('#preview').attr('src', e.target.result);
           // console.log(e.target.result);
           this.imageUrl = e.target.result;
-          this.sharingdata.imgUrl=this.imageUrl;
+
           var image = new Image();
           image.src = e.target.result;
           
-          image.onload=()=>{
-            this.sharingdata.width=image.width;
-            this.sharingdata.height=image.height;
-          }
+//           image.onload=()=>{
+//             this.sharingdata.width=image.width;
+//             this.sharingdata.height=image.height;
+//           }
           
+
+          this.service.getImage.emit(this.imageUrl);
+
       }.bind(this);
       
       

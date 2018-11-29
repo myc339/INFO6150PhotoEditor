@@ -14,9 +14,9 @@ import { MembershipMenuComponent } from './membership-menu/membership-menu.compo
 import { SaveComponent } from './save/save.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { DispalyComponent } from './dispaly/dispaly.component';
-import {SharingdataService} from './sharingdata.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { GetImageService } from './get-image.service';
 // import { AngularCropperjsModule } from 'angular-cropperjs';
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [SharingdataService],
+
+  providers: [GetImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

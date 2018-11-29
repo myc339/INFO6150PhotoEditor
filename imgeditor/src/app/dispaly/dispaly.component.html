@@ -1,10 +1,10 @@
+
 <div id="display" [ngStyle]="{'width': width,'height':height}" >
   <input [(ngModel)]="width" />
   <span></span>
   <img *ngIf="data.imgUrl" [src]="data.imgUrl" [ngStyle]="{'width': width>data.width?data.width:width,'height':height>data.height?data.height:height
 ,'left':left,'top':top}">
-  <!-- <div *ngIf="imageUrl">
-    <img class="imageUrl" [src]="imageUrl">
-    <angular-cropper #angularCropper [cropperOptions]="config" [imageUrl]="imageUrl"></angular-cropper> 
-  </div> -->
+  
+
+    
 </div>
