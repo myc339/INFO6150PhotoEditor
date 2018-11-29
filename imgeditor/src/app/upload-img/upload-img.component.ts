@@ -2,6 +2,7 @@
 import { Component, ViewChild, Inject, OnInit } from '@angular/core';
 import { DispalyComponent } from '../dispaly/dispaly.component';
 import { from } from 'rxjs';
+import { SharingdataService } from '../sharingdata.service';
 
 // import { AngularCropperjsComponent } from 'angular-cropperjs';
 
@@ -12,17 +13,15 @@ import { from } from 'rxjs';
 })
 export class UploadImgComponent implements OnInit{
   imageUrl:any = null;
-  constructor() { }
+  constructor(private sharingdata:SharingdataService) { }
 
   ngOnInit() {
+    
   }
   // cropperjs setting
 
   reset() {
     this.imageUrl = null;
-    // this.croppedImage = null;
-    // this.sliderValue = 0;
-    // this.preValue = 0;
   }
   /**
    * 
@@ -36,10 +35,12 @@ export class UploadImgComponent implements OnInit{
           //$('#preview').attr('src', e.target.result);
           // console.log(e.target.result);
           this.imageUrl = e.target.result;
-          console.log(this.imageUrl);
+          this.sharingdata.imgUrl=this.imageUrl;
       }.bind(this);
-
+      
+      
       reader.readAsDataURL(fileInput.target.files[0]);
+     
     }
   }
 }

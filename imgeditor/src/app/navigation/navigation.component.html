@@ -1,12 +1,16 @@
 <div id="UserButton">
     <div id="left">
-        <p>Welcome to ImgEdit Online!</p>
+        <p>Welcome to ImgEdit Online!  {{userName}}</p>
     </div>
     <div id="right">
-        <ul>
-            <a id="login">User Login</a>
+        <ul >
+            <div *ngIf="!Authentication">
+            Account:<input type="text" [(ngModel)]="account"/>
+            Password:<input type="text" [(ngModel)]="password"/>
+            <a   id="login" (click)="authenticate()">User Login</a>
             <a id="register">User Register</a>
-            <a id="logout">User Logout</a>
+        </div>
+            <a  *ngIf="Authentication" id="logout" (click)="LogOut()">User Logout</a>
         </ul>
     </div>
 </div>

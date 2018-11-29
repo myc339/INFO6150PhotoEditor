@@ -1,4 +1,4 @@
-# final-project-cgfz
+#final-project-cgfz
 final-project-cgfz created by GitHub Classroom
 ## Background and Proposal:
 Based on social model nowadays, people tend to share their own daily activities by posting photos, especially young people. Before posting their photos, they always edit carefully by some software like Photoshop. Our team aimed to design and develop an online picture edit website. It is like online Photoshop, providing quicker and more convenient edit features. 
@@ -38,4 +38,9 @@ node app.js to run back-end server
 then run fron-end server in angular-final-image-editor directory:
 ng serve --open
 
+Install HttpClient for get data from back-end
+npm install httpclient
+
+Default Account And Password
+admin admin
 >>>>>>> 2c4f29767c6eb7a19a65bfa9b64d494e8bbb2f9c

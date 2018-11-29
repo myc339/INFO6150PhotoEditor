@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharingdataService } from '../sharingdata.service';
 
 @Component({
   selector: 'app-dispaly',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dispaly.component.scss']
 })
 export class DispalyComponent implements OnInit {
-  imageUrl :any= null;
-  constructor() { }
+  imageUrl :any= "";
+  constructor(private data:SharingdataService) { }
 
   ngOnInit() {
+   
   }
   
   reset() {
