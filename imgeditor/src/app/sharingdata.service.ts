@@ -5,6 +5,7 @@ import {BehaviorSubject} from'rxjs';
 })
 export class SharingdataService {
   imgUrl:any="";
+
   // private messageSource=new BehaviorSubject("");
   // currentMessage=this.messageSource.asObservable();
   constructor() { }

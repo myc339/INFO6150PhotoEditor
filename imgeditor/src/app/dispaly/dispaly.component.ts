@@ -8,17 +8,16 @@ import { SharingdataService } from '../sharingdata.service';
 })
 export class DispalyComponent implements OnInit {
   imageUrl :any= "";
+  height:string="400px";
+  width:string="800px";
+  left:string="30px";
+  top:string="40px";
+  
   constructor(private data:SharingdataService) { }
 
   ngOnInit() {
    
   }
   
-  reset() {
-    this.imageUrl = null;
-    // this.croppedImage = null;
-    // this.sliderValue = 0;
-    // this.preValue = 0;
-  }
-
+  
 }

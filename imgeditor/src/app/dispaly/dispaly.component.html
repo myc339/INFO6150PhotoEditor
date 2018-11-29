@@ -1,10 +1,7 @@
-<div id="display">
-  <p>
-    this is the display area!
-    
-  </p>
+<div id="display" >
   
-  <img [src]="data.imgUrl">
+  <img *ngIf="data.imgUrl" [src]="data.imgUrl" [ngStyle]="{'width': width,'height':height
+,'left':left,'top':top}">
   <!-- <div *ngIf="imageUrl">
     <img class="imageUrl" [src]="imageUrl">
     <angular-cropper #angularCropper [cropperOptions]="config" [imageUrl]="imageUrl"></angular-cropper> 
