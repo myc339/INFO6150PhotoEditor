@@ -1,3 +1,4 @@
+import { GetImageService } from './../get-image.service';
 import { Component, OnInit } from '@angular/core';
 import { SharingdataService } from '../sharingdata.service';
 
@@ -7,13 +8,22 @@ import { SharingdataService } from '../sharingdata.service';
   styleUrls: ['./dispaly.component.scss']
 })
 export class DispalyComponent implements OnInit {
-  imageUrl :any= "";
-  constructor(private data:SharingdataService) { }
+
+
+  constructor(public service: GetImageService) {
+
+    service.getImage.subscribe((value:any)=>{
+      this.imageUrl = value;
+  })
+    //this.imageUrl = service.image;
+  }
+
 
   ngOnInit() {
    
   }
-  
+
+  imageUrl: any;
   reset() {
     this.imageUrl = null;
     // this.croppedImage = null;
