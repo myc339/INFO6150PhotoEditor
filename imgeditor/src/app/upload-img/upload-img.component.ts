@@ -11,29 +11,13 @@ import { from } from 'rxjs';
   styleUrls: ['./upload-img.component.scss']
 })
 export class UploadImgComponent implements OnInit{
-
+  imageUrl:any = null;
   constructor() { }
 
   ngOnInit() {
   }
   // cropperjs setting
-  imageUrl = null;
-  // croppedImage = null;
-  // //@ViewChild(AngularCropperjsComponent) angularCropper: AngularCropperjsComponent;
-  // config = Object.assign({
-  //   checkCrossOrigin: false,
-  //   zoomable: true,
-  //   zoom: function(value) {
-  //     this.zoomCallback(value);
-  //   }.bind(this)
-  // });
 
-  // slider values to zoom image
-  // sliderValue = 0;
-  // preValue = 0;
-  /**
-   * Reset all data for new image
-   */
   reset() {
     this.imageUrl = null;
     // this.croppedImage = null;
@@ -52,6 +36,7 @@ export class UploadImgComponent implements OnInit{
           //$('#preview').attr('src', e.target.result);
           // console.log(e.target.result);
           this.imageUrl = e.target.result;
+          console.log(this.imageUrl);
       }.bind(this);
 
       reader.readAsDataURL(fileInput.target.files[0]);
