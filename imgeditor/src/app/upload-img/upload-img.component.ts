@@ -1,5 +1,5 @@
 // import { Component, OnInit } from '@angular/core';
-import { Component, ViewChild, Inject, OnInit } from '@angular/core';
+import { Component, ViewChild, Inject, OnInit, ElementRef } from '@angular/core';
 import { DispalyComponent } from '../dispaly/dispaly.component';
 import { from } from 'rxjs';
 
@@ -15,8 +15,10 @@ import { GetImageService } from '../get-image.service';
 export class UploadImgComponent implements OnInit{
 
 
+
   constructor(private service: GetImageService) { 
   }
+
 
   ngOnInit() {
     
@@ -49,7 +51,18 @@ export class UploadImgComponent implements OnInit{
           //$('#preview').attr('src', e.target.result);
           // console.log(e.target.result);
           this.imageUrl = e.target.result;
+
+          var image = new Image();
+          image.src = e.target.result;
+          
+//           image.onload=()=>{
+//             this.sharingdata.width=image.width;
+//             this.sharingdata.height=image.height;
+//           }
+          
+
           this.service.getImage.emit(this.imageUrl);
+
       }.bind(this);
       
       
