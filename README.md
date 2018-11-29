@@ -18,6 +18,7 @@ I need more advanced features to edit more details of my photos to make them sub
 4. Resize: I can set my photo to another size, even by percentage.
 5. Add Text: I can add some text above my photo to describe my feelings.
 
+<<<<<<< HEAD
 ## Future Development Plan:
 we consider to build our user system more widely. After consumption, the user can achieve extra features bellow:<br/>
 -- Photo Effect & Beauty<br/>
@@ -25,3 +26,16 @@ we consider to build our user system more widely. After consumption, the user ca
 -- Collage<br/>
 ## Domain Model:
 ![Image text](https://github.com/neu-mis-info6150-fall-2018/final-project-cgfz/blob/master/domain_model_image/domain_model.svg)
+=======
+
+
+How to run app.js
+in app_final_image_editor directory:
+npm install express body-parser mongoose --save
+npm install cors --save
+node app.js to run back-end server
+
+then run fron-end server in angular-final-image-editor directory:
+ng serve --open
+
+>>>>>>> 2c4f29767c6eb7a19a65bfa9b64d494e8bbb2f9c

@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dispaly.component.scss']
 })
 export class DispalyComponent implements OnInit {
-
+  imageUrl :any= null;
   constructor() { }
 
   ngOnInit() {
   }
-  imageUrl = null;
+  
   reset() {
     this.imageUrl = null;
     // this.croppedImage = null;

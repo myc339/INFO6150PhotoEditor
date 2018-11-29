@@ -1,50 +1,62 @@
 const User = require("../models/User");
 
 
-exports.listAllTasks = (req, res) => {
-  User.find({}, (err, task) => {
+exports.listAllUsers = (req, res) => {
+  User.find({}, (err, user) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.status(200).json(task);
+    res.status(200).json(user);
   });
 };
 
-exports.createNewTask = (req, res) => {
-  let newTask = new User(req.body);
-  newTask.save((err, task) => {
+exports.createNewUser = (req, res) => {
+  let newUser = new User(req.body);
+  
+  newUser.save((err, user) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.status(201).json(task);
+    res.status(201).json(user);
   });
 };
 
-exports.readTask = (req, res) => {
-  User.findById(req.params.usersId, (err, task) => {
+exports.readUser = (req, res) => {
+  User.findById(req.params.usersId, (err, user) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.status(200).json(task);
+    res.status(200).json(user);
   });
 };
 
-exports.updateTask = (req, res) => {
+exports.updateUser = (req, res) => {
   User.findOneAndUpdate(
     req.params.usersId ,
     req.body,
     { new: true },
-    (err, task) => {
+    (err, user) => {
       if (err) {
         res.status(500).send(err);
       }
-      res.status(200).json(task);
+      res.status(200).json(user);
     }
   );
 };
+exports.authenticate = (req, res) => {
+  User.findOne({account:req.query.account,password:req.query.password}, (err, user) => {
+      
+   
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.status(200).json(user);
+    
+  });
+};
 
-exports.deleteTask = (req, res) => {
-  User.findByIdAndDelete( req.params.usersId , (err, task) => {
+exports.deleteUser = (req, res) => {
+  User.findByIdAndDelete( req.params.usersId , (err, user) => {
     if (err) {
       res.status(404).send(err);
     }
