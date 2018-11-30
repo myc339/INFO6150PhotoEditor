@@ -1,4 +1,4 @@
-#final-project-cgfz
+# final-project-cgfz
 final-project-cgfz created by GitHub Classroom
 ## Background and Proposal:
 Based on social model nowadays, people tend to share their own daily activities by posting photos, especially young people. Before posting their photos, they always edit carefully by some software like Photoshop. Our team aimed to design and develop an online picture edit website. It is like online Photoshop, providing quicker and more convenient edit features. 
