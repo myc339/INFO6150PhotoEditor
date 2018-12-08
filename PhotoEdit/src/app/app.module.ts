@@ -7,6 +7,9 @@ import { MenuComponent } from './menu/menu.component';
 import { PreviewComponent } from './preview/preview.component';
 import { EditComponent } from './edit/edit.component';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { PoolComponent } from './pool/pool.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { ConfirmComponent } from './confirm/confirm.component';
     MenuComponent,
     PreviewComponent,
     EditComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    LoginComponent,
+    RegisterComponent,
+    PoolComponent
   ],
   imports: [
     BrowserModule,
