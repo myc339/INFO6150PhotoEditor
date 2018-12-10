@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService:UsersService) { }
  
-  user: User;
+  user: User=new User();
   Authentication: boolean = false;
   validation:boolean=false;
   authenticate() {
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
      userName:"",
      account:"",
      password:"",
-     confirmpassword:""
+  
    }
   }
   private UsersLogin() {

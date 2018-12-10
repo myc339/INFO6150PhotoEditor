@@ -15,7 +15,11 @@
             <div class="caption">
                 <h4></h4>
             </div>
-            <p>
+            <div *ngFor="let item of images">
+                <span> {{item.img}}</span>
+                <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width,'height':height}"/>
+            </div>
+            <p> 
                 <a href="" class="btn btn-primary">More Info</a>
             </p>
          </div>

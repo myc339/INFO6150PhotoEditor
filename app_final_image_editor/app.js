@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const taskController = require("./controller/UserController");
+const ImagebankController=require("./controller/ImagebankController");
 const cors = require('cors');
 // db instance connection
 require("./config/db");
@@ -25,18 +26,24 @@ app.use(bodyParser.json());
 app
   .route("/users")
   .get(taskController.listAllUsers);
- app
- .route("/register")
+  
+  app
+  .route("/registration")
   .post(taskController.createNewUser);
-
 app
   .route("/users/:usersId")
   .get(taskController.readUser)
   .put(taskController.updateUser)
   .delete(taskController.deleteUser);
 app
-  .route("/login")
+  .route("/authentication")
   .get(taskController.authenticate);
+  app
+.route("/Imagebank")
+.get(ImagebankController.listAllImage);
+app
+.route("/Imagebank/Save")
+.post(ImagebankController.AddNewImage);
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

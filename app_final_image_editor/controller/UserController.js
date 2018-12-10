@@ -11,8 +11,11 @@ exports.listAllUsers = (req, res) => {
 };
 
 exports.createNewUser = (req, res) => {
-  let newUser = new User(req.body);
   
+  let newUser = new User();
+   newUser.account=req.body.account;
+     newUser.password=req.body.password;
+    newUser.userName=req.body.userName;
   newUser.save((err, user) => {
     if (err) {
       res.status(500).send(err);
@@ -31,10 +34,10 @@ exports.readUser = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
+  
   User.findOneAndUpdate(
-    req.params.usersId ,
-    req.body,
-    { new: true },
+    {_id:req.params.usersId,account:req.query.account},
+   {$set:{password:req.query.password,userName:req.query.userName}},
     (err, user) => {
       if (err) {
         res.status(500).send(err);
