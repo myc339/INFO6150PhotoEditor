@@ -19,7 +19,11 @@
             <p>
                 <a class="btn btn-primary" 
                 (click) = "onLoadMoreInfo()">More Info</a>
-            </p>
+            <div *ngFor="let item of images">
+                <span> {{item.img}}</span>
+                <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width,'height':height}"/>
+            </div>
+
          </div>
      </div>
 </div>

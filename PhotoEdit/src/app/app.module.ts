@@ -11,7 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PoolComponent } from './pool/pool.component';
 import { Routes, RouterModule} from "@angular/router"
-
+import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'edit', component: EditComponent },
   { path: 'confirm', component: ConfirmComponent },
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes)
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

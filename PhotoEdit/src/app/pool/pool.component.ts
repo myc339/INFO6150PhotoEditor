@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Images } from '../Images';
+import { ImagesService } from '../images.service';
 
 @Component({
   selector: 'app-pool',
@@ -8,9 +10,20 @@ import { Router } from '@angular/router';
 })
 export class PoolComponent implements OnInit {
 
-  constructor(private router: Router) { }
+
+  images:Images;
+  width:"200px";
+  height:"50px";
+  constructor(private router: Router, private imageservice:ImagesService) { }
 
   ngOnInit() {
+    this.imageservice.retriveAllImage().subscribe((images)=>{
+      this.images=images;
+      console.log(this.images);
+    })
+  }
+  priview($event){
+    console.log($event);
   }
 
   onLoadAddNew(){
