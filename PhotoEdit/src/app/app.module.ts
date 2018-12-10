@@ -10,7 +10,8 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PoolComponent } from './pool/pool.component';
-
+import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,9 @@ import { PoolComponent } from './pool/pool.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

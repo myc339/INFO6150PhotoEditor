@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Images } from '../Images';
+import { ImagesService } from '../images.service';
 
 @Component({
   selector: 'app-pool',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pool.component.scss']
 })
 export class PoolComponent implements OnInit {
-
-  constructor() { }
+  images:Images;
+  constructor(private imageservice:ImagesService) { }
 
   ngOnInit() {
+    // this.imageservice.retriveAllImage().subscribe()
+    // {
+
+    // }
   }
 
 }
