@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import {User} from'../users';
@@ -8,7 +9,8 @@ import {User} from'../users';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService:UsersService) { }
+
+  constructor(private router : Router, private userService:UsersService) { }
  
   user: User=new User();
   Authentication: boolean = false;
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
      
     });
   }
+
   ngOnInit() {
    this.user={
      userName:"",
@@ -49,6 +52,10 @@ export class LoginComponent implements OnInit {
       }
     }
       );
+  }
+
+  onLoadPreview(){
+    this.router.navigate(['/pool']);
   }
 
 }

@@ -10,8 +10,18 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PoolComponent } from './pool/pool.component';
+import { Routes, RouterModule} from "@angular/router"
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'pool', component: PoolComponent },
+  { path: 'preview', component: PreviewComponent },
+  { path: 'edit', component: EditComponent },
+  { path: 'confirm', component: ConfirmComponent },
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +36,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule.forRoot(appRoutes)
     FormsModule,
     HttpClientModule,
   ],
