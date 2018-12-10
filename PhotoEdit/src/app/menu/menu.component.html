@@ -11,15 +11,15 @@
                    
                         <li routerLinkActive = "active" 
                         [routerLinkActiveOptions]="{exact: true}">
-                            <a routerLink="login" >Login</a></li>
+                            <a routerLink="login" *ngIf="!shareInfoClass.logIn">Login</a></li>
                         <li routerLinkActive = "active">
-                            <a routerLink="register">Sign Up</a></li>
+                            <a routerLink="register" *ngIf="!shareInfoClass.logIn">Sign Up</a></li>
                         <li routerLinkActive = "active" 
                         [routerLinkActiveOptions]="{exact: true}">
-                            <a [routerLink]="signAsLink" >Signed In As</a></li>
+                            <a *ngIf="shareInfoClass.logIn"> {{shareInfoClass.userName}}</a></li>
                         <li routerLinkActive = "active"
                         [routerLinkActiveOptions]="{exact: true}">
-                            <a [routerLink]="logoutLink">Logout</a></li>
+                            <a (click) = "logOut()" *ngIf="shareInfoClass.logIn" >Logout</a></li>
                    
                 </ul>
             </div>

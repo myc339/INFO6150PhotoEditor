@@ -1,3 +1,5 @@
+import { ShareInfoClass } from './../shareInfoClass';
+import { ShareInfoService } from './../share-info.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,11 +11,20 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
+  shareInfoClass : ShareInfoClass = new ShareInfoClass;
   logoutLink = "pool";
   signAsLink = "pool";
-  constructor(private router: Router) { }
+  constructor(private router: Router, private shareInfoService:ShareInfoService) { 
+    this.shareInfoService.change.subscribe((shareInfo: ShareInfoClass)=>{
+      this.shareInfoClass = shareInfo;
+    })
+  }
 
   ngOnInit() {
   }
 
+  logOut(){
+    this.router.navigate(['/pool']);
+    this.shareInfoClass.logIn = false;
+  }
 }
