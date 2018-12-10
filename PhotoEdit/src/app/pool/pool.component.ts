@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pool',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoolComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onLoadAddNew(){
+    this.router.navigate(['preview']);
+  }
+
+  onLoadMoreInfo(){
+    this.router.navigate(['preview']);
   }
 
 }

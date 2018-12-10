@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  logoutLink = "pool";
+  signAsLink = "pool";
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }

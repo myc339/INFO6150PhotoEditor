@@ -3,7 +3,8 @@
       <h1><span class="glyphicon glyphicon-tent"></span> Welcome To YelpCamp!</h1>
       <p>View our hand-picked campgrounds from all over the world</p>
       <p>
-         <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+         <a class="btn btn-primary btn-lg" 
+         (click) = "onLoadAddNew()">Add New Campground</a>
       </p>
   </div>
 </header>
@@ -16,7 +17,8 @@
                 <h4></h4>
             </div>
             <p>
-                <a href="" class="btn btn-primary">More Info</a>
+                <a class="btn btn-primary" 
+                (click) = "onLoadMoreInfo()">More Info</a>
             </p>
          </div>
      </div>

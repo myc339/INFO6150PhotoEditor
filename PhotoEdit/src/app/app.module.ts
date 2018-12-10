@@ -10,7 +10,16 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PoolComponent } from './pool/pool.component';
+import { Routes, RouterModule} from "@angular/router"
 
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'pool', component: PoolComponent },
+  { path: 'preview', component: PreviewComponent },
+  { path: 'edit', component: EditComponent },
+  { path: 'confirm', component: ConfirmComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +33,8 @@ import { PoolComponent } from './pool/pool.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
