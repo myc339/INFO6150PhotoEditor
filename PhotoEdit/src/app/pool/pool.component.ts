@@ -9,13 +9,18 @@ import { ImagesService } from '../images.service';
 })
 export class PoolComponent implements OnInit {
   images:Images;
+  width:"200px";
+  height:"50px";
   constructor(private imageservice:ImagesService) { }
 
   ngOnInit() {
-    // this.imageservice.retriveAllImage().subscribe()
-    // {
-
-    // }
+    this.imageservice.retriveAllImage().subscribe((images)=>{
+      this.images=images;
+      console.log(this.images);
+    })
+  }
+  priview($event){
+    console.log($event);
   }
 
 }

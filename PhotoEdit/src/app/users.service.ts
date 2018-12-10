@@ -11,7 +11,7 @@ export class UsersService {
   constructor(private http:HttpClient){}
   Login(account:string,password:string):Observable<any>
   {
-    return this.http.get<User>(this.requestUrl+'/login?account='+account+'&password='+password);
+    return this.http.get<User>(this.requestUrl+'/authentication?account='+account+'&password='+password);
   }
   Register(user:User):Observable<any>
   {  
@@ -25,6 +25,6 @@ export class UsersService {
    console.log(body);
    
  
-   return this.http.post<User>(this.requestUrl+'/register?',body,httpOptions);  
+   return this.http.post<User>(this.requestUrl+'/registeration?',body,httpOptions);  
   }
 }
