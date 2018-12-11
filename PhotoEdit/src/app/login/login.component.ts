@@ -28,13 +28,7 @@ export class LoginComponent implements OnInit {
     this.user.account="";
     this.user.password="";
   }
-  register()
-  {
-    this.userService.Register(this.user).subscribe(()=>
-    {
-     
-    });
-  }
+  
 
   ngOnInit() {
    this.user={
@@ -51,8 +45,9 @@ export class LoginComponent implements OnInit {
       if(users!==null)
       {
         //share username and log in status
+        this.shareInfoClass.userAccount = this.user.account;
         this.shareInfoClass.logIn = true;
-        this.shareInfoClass.userName = this.user.account;
+        this.shareInfoClass.userName = this.user.userName;
         this.shareInfoService.change.emit(this.shareInfoClass);
 
         this.router.navigate(['/pool']);
