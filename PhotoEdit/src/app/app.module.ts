@@ -13,14 +13,17 @@ import { PoolComponent } from './pool/pool.component';
 import { Routes, RouterModule} from "@angular/router"
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { WelcomeComponent } from './welcome/welcome.component';
+import {PreviewService} from './preview.service';
+import {ImageEditingDirective} from './image-editing.directive';
+import {WelcomeComponent} from './welcome/welcome.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', component: PoolComponent },
+  { path: 'pool', component: PoolComponent },
   { path: 'preview', component: PreviewComponent },
   { path: 'edit', component: EditComponent },
   { path: 'confirm', component: ConfirmComponent },
+  { path: '', component: WelcomeComponent}
 ];
 
 @NgModule({
@@ -33,7 +36,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     PoolComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ImageEditingDirective
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [PreviewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

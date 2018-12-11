@@ -1,31 +1,31 @@
 <header class="jumbotron">
+
   <div id="header" class="container">
     <h1><span class="glyphicon glyphicon-picture"></span> Welcome To Greeting Card Edit!</h1>
     <strong>Choose One Picture From Our 123 Free Pictures Pool</strong>
     <p>
 
-      <input id="img_input2" type="file" accept="image/*" (change)="fileChangeEvent($event)" />
+      <input #userPhoto id="img_input2" type="file" accept="image/*" (change)="fileChangeEvent($event)" />
       <label for="img_input2" class="img_label2"><span class="glyphicon glyphicon-open"></span><span>Add Your Picture</span>
       </label>
+
     </p>
   </div>
 </header>
 
 <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-  <div class="col-md-3 col-sm-6">
+  <div class="col-md-4 col-sm-6">
     <div class="thumbnail">
-      <img src="">
-      <div class="caption">
-        <h4></h4>
-
+      <img src="" />
+      <div class="caption"><h4></h4></div>
+      <p><a class="btn btn-primary" (click)="onLoadMoreInfo()">More Info</a></p>
+      <div *ngFor="let item of images">
+        <img
+          (click)="preview($event)"
+          [src]="sanitize(item.img)"
+          [ngStyle]="{ width: width + 'px', height: height + 'px' }"
+        />
       </div>
-      <p>
-        <a class="btn btn-primary" (click)="onLoadMoreInfo()">Edit This</a>
-        <div *ngFor="let item of images">
-
-          <img (click)="preview($event)" [src]="sanitize(item.img)" [ngStyle]="{'width': width+'px','height':height+'px'}" />
-        </div>
-
     </div>
   </div>
 </div>

@@ -7,7 +7,7 @@ import {Images} from './Images';
 export class ImagesService {
   requestUrl:string='http://localhost:3301';
  constructor(private http:HttpClient){}
- retriveAllImage()
+ RetrieveAllImage()
  {
   return this.http.get<Images>(this.requestUrl+'/Imagebank');
  }
@@ -18,11 +18,7 @@ export class ImagesService {
       'Content-Type':  'application/json',
     })
   };
-  console.log(image.title);
-  //console.log
-  //console.log(image.imgpath);
   let body=JSON.stringify(image);
-  console.log(body);
   return this.http.post<Images>(this.requestUrl+"/Imagebank/Save?",body,httpOptions);
  }
 }
