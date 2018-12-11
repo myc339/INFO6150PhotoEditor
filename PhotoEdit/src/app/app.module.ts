@@ -13,6 +13,7 @@ import { PoolComponent } from './pool/pool.component';
 import { Routes, RouterModule} from "@angular/router"
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import {PreviewService} from './preview.service';
 import { WelcomeComponent } from './welcome/welcome.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -42,7 +43,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [PreviewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
