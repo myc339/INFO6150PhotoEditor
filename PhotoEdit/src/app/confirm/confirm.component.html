@@ -1,12 +1,13 @@
 
 <div>
   <input type="text">
-  <button class = "send">Send</button>
+  <button class = "send" (click)="send()">Send</button>
 </div>
-<div class = "img">
+<div class = "img" id="display">
   
 </div>
 <div>
-  <button class = "Save">Save</button>
+  <button class = "Save " (click)="download()">Save local</button>
+  <button class="Save " (click)="upload()">Save cloud</button>
   <button class = "Back">Back</button>
 </div>

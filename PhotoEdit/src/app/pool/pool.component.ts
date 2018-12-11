@@ -9,8 +9,8 @@ import { ImagesService } from '../images.service';
 })
 export class PoolComponent implements OnInit {
   images:Images;
-  width:"200px";
-  height:"50px";
+  width:Number=200;
+  height:Number=500;
   constructor(private imageservice:ImagesService) { }
 
   ngOnInit() {
@@ -20,7 +20,27 @@ export class PoolComponent implements OnInit {
     })
   }
   priview($event){
-    console.log($event);
+    console.log($event.target.src);
+    
+    this.getUrlBase64($event.target.src,'png',function (base64) {
+      console.log(base64);//base64编码值
+  });
   }
+   getUrlBase64(url, ext, callback) {
+    var canvas = document.createElement("canvas");   //创建canvas DOM元素
+    var ctx = canvas.getContext("2d");
+    var img = new Image;
+    img.crossOrigin = 'Anonymous';
+    img.src = url;
+    img.onload = function () {
+        canvas.height = 60; //指定画板的高度,自定义
+        canvas.width = 85; //指定画板的宽度，自定义
+        ctx.drawImage(img, 0, 0, 60, 85); //参数可自定义
+        var dataURL = canvas.toDataURL("image/" + ext);
+        callback.call(this, dataURL); //回掉函数获取Base64编码
+        canvas = null;
+    };
+}
+
 
 }

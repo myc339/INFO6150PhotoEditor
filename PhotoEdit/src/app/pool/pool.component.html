@@ -14,10 +14,10 @@
             <img src="">
             <div class="caption">
                 <h4></h4>
-            </div>
-            <div *ngFor="let item of images">
+            </div >
+            <div style='float:left' *ngFor="let item of images">
                 <span> {{item.img}}</span>
-                <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width,'height':height}"/>
+                <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width+'px','height':height+'px'}"/>
             </div>
             <p> 
                 <a href="" class="btn btn-primary">More Info</a>
