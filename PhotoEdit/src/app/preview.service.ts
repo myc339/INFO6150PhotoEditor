@@ -4,10 +4,10 @@ import { Injectable, EventEmitter } from '@angular/core';
   providedIn: 'root'
 })
 export class PreviewService {
-  Img :String;
+  Img :any;
   getImg:EventEmitter<any>
   constructor(){
-    this.Img = "aa";
+    
     this.getImg = new EventEmitter();
   }
 
