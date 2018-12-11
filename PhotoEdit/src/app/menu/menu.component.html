@@ -12,7 +12,8 @@
                         <li routerLinkActive = "active" 
                         [routerLinkActiveOptions]="{exact: true}">
                             <a routerLink="login" *ngIf="!shareInfoClass.logIn">Login</a></li>
-                        <li routerLinkActive = "active">
+                        <li routerLinkActive = "active"
+                        [routerLinkActiveOptions]="{exact: true}">
                             <a routerLink="register" *ngIf="!shareInfoClass.logIn">Sign Up</a></li>
                         <li routerLinkActive = "active" 
                         [routerLinkActiveOptions]="{exact: true}">

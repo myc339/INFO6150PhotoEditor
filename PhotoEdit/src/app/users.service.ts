@@ -25,6 +25,6 @@ export class UsersService {
    console.log(body);
    
  
-   return this.http.post<User>(this.requestUrl+'/registeration?',body,httpOptions);  
+   return this.http.post<User>(this.requestUrl+'/registration?',body,httpOptions);  
   }
 }
