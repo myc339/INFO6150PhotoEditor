@@ -10,6 +10,21 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PoolComponent } from './pool/pool.component';
+import { Routes, RouterModule} from "@angular/router"
+import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import {PreviewService} from './preview.service';
+import {ImageEditingDirective} from './image-editing.directive';
+import {WelcomeComponent} from './welcome/welcome.component';
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'pool', component: PoolComponent },
+  { path: 'preview', component: PreviewComponent },
+  { path: 'edit', component: EditComponent },
+  { path: 'confirm', component: ConfirmComponent },
+  { path: '', component: WelcomeComponent}
+];
 
 @NgModule({
   declarations: [
@@ -20,13 +35,18 @@ import { PoolComponent } from './pool/pool.component';
     ConfirmComponent,
     LoginComponent,
     RegisterComponent,
-    PoolComponent
+    PoolComponent,
+    WelcomeComponent,
+    ImageEditingDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [PreviewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,17 +3,27 @@
       <h1 style="text-align: center">Sign Up</h1>
       <div style="width: 30%; margin: 25px auto;">
           <form action="/register" method="post">
-              <div class="form-group">
-                  <input class="form-control" type="text" name="username" placeholder="username">
-              </div>
-              <div class="form-group">
-                  <input class="form-control" type="password" name="password" placeholder="password">
-              </div>
-              <div class="form-group">
-                  <button class="btn btn-lg btn-primary btn-block">Sign Up!</button>
-              </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="account" placeholder="account"
+                [(ngModel)]="account">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="userName" placeholder="username"
+                [(ngModel)]="user.userName">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="password"
+                [(ngModel)]="password">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="password"
+                [(ngModel)]="rePassword">
+            </div>
+            <div class="form-group">
+                  <button class="btn btn-lg btn-primary btn-block" (click) = "register()">Sign Up!</button>
+            </div>
           </form>
-          <a href="/campgrounds">Go Back</a>
+          <a routerLink="/">Go Back</a>
       </div>
   </div>
 </div>

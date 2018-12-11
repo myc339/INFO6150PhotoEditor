@@ -1,0 +1,50 @@
+.jumbotron {
+  background-color: #856f6e;
+  color: #ffffff;
+}
+
+.jumbotron>.glyphicon {
+  color: #ffffff;
+}
+
+
+
+#header>strong {
+  font-size: 30px;
+  color: #ffffff;
+}
+
+#next>strong{
+  font-size: 15px;
+  color: #ffffff
+}
+
+input {
+  width: 400px;
+  height: 40px;
+  border: #ffffff 1px solid;
+  outline: none;
+}
+
+#send {
+  height: 44px;
+  border: 0px;
+  background-color: #856f6e;
+  font-size: 20px;
+  color: #ffffff
+}
+
+#save,#share{
+  height: 44px;
+  border: 0px;
+  background-color: #856f6e;
+  font-size: 15px;
+  color: #ffffff
+}
+
+button{
+  border: 1px;
+  background-color: #ffffff;
+  font-size: 20px;
+  color: #856f6e;
+}

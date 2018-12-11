@@ -1,15 +1,137 @@
-import { Component, OnInit } from '@angular/core';
-
+import { ShareInfoClass } from './../shareInfoClass';
+import { ShareInfoService } from './../share-info.service';
+import { Router } from '@angular/router';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { UsersService } from '../users.service';
+import {User} from'../users';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('checkCode') canvasRef: ElementRef;
+  public code: any; // 验证码
+  InputCode:string;
+  shareInfoClass: ShareInfoClass = new ShareInfoClass;
+  user: User=new User();
+  Authentication: boolean = false;
+  validation:boolean=false;
+  constructor(private router : Router, private userService:UsersService, private shareInfoService:ShareInfoService) { 
+    this.user={
+      userName:"",
+      account:"",
+      password:"",
+   
+    }
+  }
+  authenticate() {
+    this.UsersLogin();
+    
+  }
+  LogOut()
+  {
+    this.Authentication=false;
+    this.user.account="";
+    this.user.password="";
+  }
+  
 
   ngOnInit() {
+   
+   this.clickChange();
   }
+  private UsersLogin() {
+
+    console.log(this.InputCode===this.code)
+    if(this.user===null)
+      {
+        console.log("input err")
+        return;
+      }
+    if(this.InputCode!==this.code)
+    {
+      return ;
+    }
+    this.userService.Login(this.user.account, this.user.password).subscribe(users =>{ 
+      
+      console.log(users)
+      if(users!==null)
+      {
+        //share username and log in status
+        this.user = users;
+        this.shareInfoClass.userAccount = this.user.account;
+        this.shareInfoClass.logIn = true;
+        this.shareInfoClass.userName = this.user.userName;
+        this.shareInfoService.change.emit(this.shareInfoClass);
+
+        this.router.navigate(['/pool']);
+        this.Authentication=true;
+       
+      }
+    }
+      );
+      
+  }
+
+  // create random checkcode
+public createCode() {
+  this.code = '';
+  const codeLength = 4;  // code length
+  const random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']; // 所有候选组成验证码的字符，当然也可以用中文的
+  for (let i = 0; i < codeLength; i++) { // loop
+    const index = Math.floor(Math.random() * 52); // generate random index（0~51）
+    this.code += random[index]; // get according character and add into verifycode
+  }
+  return this.code;
+}
+
+/*generate line x position value*/
+public lineX() {
+  const ranLineX = Math.floor(Math.random() * 80);
+  return ranLineX;
+}
+
+/*generate line y position value*/
+public lineY() {
+  const ranLineY = Math.floor(Math.random() * 35);
+  return ranLineY;
+}
+
+// generate random color
+public rgb() {
+  // 因为在angular4里面不能使用arguments，所以换了一种方法。
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+public clickChange() {
+  // * 注意：这里跟js不一样！！！
+  const cxt: CanvasRenderingContext2D = this.canvasRef.nativeElement.getContext('2d');
+  cxt.fillStyle = '#fff';
+  cxt.fillRect(0, 0, 80, 35);
+
+  /*generate 20 lines*/
+  for (let j = 0; j < 20; j++) {
+    cxt.strokeStyle = this.rgb();
+    cxt.beginPath();    // without beginPath, every time generate verify code lines number will added 
+    cxt.moveTo(this.lineX(), this.lineY());
+    cxt.lineTo(this.lineX(), this.lineY());
+    cxt.lineWidth = 0.5;
+    cxt.closePath();
+    cxt.stroke();
+  }
+
+  cxt.fillStyle = '#6271a9';
+  cxt.font = 'bold 20px Arial';
+  cxt.fillText(this.createCode(), 15, 25);   // 把rand()生成的随机数文本填充到canvas中
+  console.log(this.code);
+}
+
+  register(){
+    this.router.navigate(['/register']);
+  }
+
 
 }

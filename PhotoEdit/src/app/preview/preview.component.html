@@ -1,3 +1,22 @@
-<p>
-  preview works!
-</p>
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-xs-4"><span class="glyphicon glyphicon-camera"> From:AAA CreateTime:01-01-2018</span></div>
+    <div class="col-xs-7"></div>
+    <div class="col-xs-1"><span><a class="btn btn-primary text-right" routerLink="/edit">Editing</a></span></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <div  class="thumbnail">    
+        <img class="img-responsive" src="{{ImagesInfo?.localImg||ImagesInfo?.cloudImg}}">
+
+        <div class="caption-full">
+   
+        
+          <a class="btn btn-success" routerLink="/edit" (click)="confirm()">Edit</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
