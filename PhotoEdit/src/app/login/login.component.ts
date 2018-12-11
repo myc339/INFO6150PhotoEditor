@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         this.shareInfoClass.userName = this.user.userName;
         this.shareInfoService.change.emit(this.shareInfoClass);
 
-        this.router.navigate(['/pool']);
+        this.router.navigate(['/']);
         this.Authentication=true;
        
       }

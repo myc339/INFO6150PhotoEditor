@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   shareInfoClass : ShareInfoClass = new ShareInfoClass;
-  logoutLink = "pool";
-  signAsLink = "pool";
+  logoutLink = "/";
+  signAsLink = "/";
   constructor(private router: Router, private shareInfoService:ShareInfoService) { 
     this.shareInfoService.change.subscribe((shareInfo: ShareInfoClass)=>{
       this.shareInfoClass = shareInfo;
@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   }
 
   logOut(){
-    this.router.navigate(['/pool']);
+    this.router.navigate(['/']);
     this.shareInfoClass.logIn = false;
   }
 }

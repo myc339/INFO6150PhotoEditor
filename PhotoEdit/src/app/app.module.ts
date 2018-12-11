@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'pool', component: PoolComponent },
+  { path: '', component: PoolComponent },
   { path: 'preview', component: PreviewComponent },
   { path: 'edit', component: EditComponent },
   { path: 'confirm', component: ConfirmComponent },

@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onLoadPool(){
-    this.router.navigate(['/pool']);
+    this.router.navigate(['/']);
   }
 
   register()
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
       {
 
       });
-      this.router.navigate(['/pool']);
+      this.router.navigate(['/']);
     }
     
   }
