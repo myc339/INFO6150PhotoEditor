@@ -1,13 +1,26 @@
+<header class="jumbotron">
+  <div id="header" class="container">
+    <strong><span class="glyphicon glyphicon-envelope"></span> You Can Send Your Edit To Your Friends!</strong>
+    <div>
+      <br>
+      <input type="text">
+      <button id="send" (click)="send()"><span class="glyphicon glyphicon-send"></span> Send</button>
+    </div>
+  </div>
+</header>
 
-<div>
-  <input type="text">
-  <button class = "send" (click)="send()">Send</button>
+<div class="container">
+  <div class="row justify-content-between">
+    <div id="save" class="col-xs-4 text-left"><button (click)="download()"><span class="glyphicon glyphicon-cloud-download"></span> Save To My Computer</button></div>
+    <div class="col-xs-6"></div>
+    <div id="back" class="col-xs-2 text-right"><button (click)="upload()"><span class="glyphicon glyphicon-triangle-left"></span> Back</button></div>
+  </div>
 </div>
-<div class = "img" id="display">
-  
-</div>
-<div>
-  <button class = "Save " (click)="download()">Save local</button>
-  <button class="Save " (click)="upload()">Save cloud</button>
-  <button class = "Back">Back</button>
+
+<div class="container">
+  <div class="row">
+    <div class="thumbnail">
+      <img class="img-responsive" src="https://static1.squarespace.com/static/5a4e5622aeb625db0f6ae7f8/5af35a3c758d46bbcf56c370/5afc9463352f53fce4e3254b/1526502705039/img_wedding-design_anella.png?format=2500w">
+    </div>
+  </div>
 </div>
