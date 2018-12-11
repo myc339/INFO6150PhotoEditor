@@ -4,7 +4,8 @@
       <p>View our hand-picked campgrounds from all over the world</p>
       <p>
           <input type="file" class = "upload">
-         <button class="btn btn-primary btn-lg" (onclick) = "upload">Add New Campground</button>
+         <a class="btn btn-primary btn-lg" 
+         (click) = "onLoadAddNew()">Add New Campground</a>
       </p>
   </div>
 </header>
@@ -16,13 +17,14 @@
             <div class="caption">
                 <h4></h4>
             </div>
+            <p>
+                <a class="btn btn-primary" 
+                (click) = "onLoadMoreInfo()">More Info</a>
             <div *ngFor="let item of images">
                 <span> {{item.img}}</span>
                 <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width,'height':height}"/>
             </div>
-            <p> 
-                <a href="" class="btn btn-primary">More Info</a>
-            </p>
+
          </div>
      </div>
 </div>
