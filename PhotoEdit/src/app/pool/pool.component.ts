@@ -13,12 +13,16 @@ export class PoolComponent implements OnInit {
 
 
   images:Images;
-  width:"200px";
-  height:"50px";
+
+  width:Number=200;
+  height:Number=500;
+  
+
 
   constructor(private imageservice:ImagesService, private previewService:PreviewService,private router: Router) {
     
    }
+
 
 
   ngOnInit() {
@@ -29,8 +33,13 @@ export class PoolComponent implements OnInit {
     this.previewService.getImg.emit("aa");
   }
   priview($event){
-    console.log($event);
+    console.log($event.target.src);
+    
+    this.getUrlBase64($event.target.src,'png',function (base64) {
+      console.log(base64);//base64编码值
+  });
   }
+
   
   upload(){
   }
@@ -42,5 +51,6 @@ export class PoolComponent implements OnInit {
   onLoadMoreInfo(){
     this.router.navigate(['preview']);
   }
+
 
 }

@@ -16,13 +16,15 @@
             <img src="">
             <div class="caption">
                 <h4></h4>
+
             </div>
             <p>
                 <a class="btn btn-primary" 
                 (click) = "onLoadMoreInfo()">More Info</a>
             <div *ngFor="let item of images">
+
                 <span> {{item.img}}</span>
-                <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width,'height':height}"/>
+                <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width+'px','height':height+'px'}"/>
             </div>
 
          </div>

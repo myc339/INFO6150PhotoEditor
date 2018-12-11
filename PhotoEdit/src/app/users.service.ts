@@ -24,7 +24,7 @@ export class UsersService {
    let body=JSON.stringify(user);
    console.log(body);
    
- 
+
    return this.http.post<User>(this.requestUrl+'/registration?',body,httpOptions);  
   }
 }
