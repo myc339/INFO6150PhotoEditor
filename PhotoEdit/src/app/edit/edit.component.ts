@@ -1,14 +1,21 @@
+
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import {PreviewService} from '../preview.service';
 import { ImagesInfo } from "../ImagesInfo";
 import { LoadcloudimageService } from "../loadcloudimage.service";
 import { Subscription } from "rxjs";
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+
  
   @ViewChild('myCanvas') myCanvas:ElementRef;
   context:CanvasRenderingContext2D;
@@ -21,6 +28,11 @@ export class EditComponent implements OnInit {
   constructor(private previewService: PreviewService) {
     
   }
+
+
+  constructor(private router:Router) { }
+
+
   ngOnInit() {
     console.log(this.previewService.ImagesInfo);
     this.ImagesInfo=this.previewService.ImagesInfo;
@@ -46,4 +58,7 @@ export class EditComponent implements OnInit {
 
   
 
+  goToConfirm(){
+    this.router.navigate(['/confirm']);
+  }
 }

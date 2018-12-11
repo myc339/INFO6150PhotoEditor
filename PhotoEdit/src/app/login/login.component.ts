@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         this.shareInfoClass.userName = this.user.userName;
         this.shareInfoService.change.emit(this.shareInfoClass);
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/pool']);
         this.Authentication=true;
        
       }
@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
       );
       
   }
+
   // create random checkcode
 public createCode() {
   this.code = '';
@@ -127,5 +128,10 @@ public clickChange() {
   cxt.fillText(this.createCode(), 15, 25);   // 把rand()生成的随机数文本填充到canvas中
   console.log(this.code);
 }
+
+  register(){
+    this.router.navigate(['/register']);
+  }
+
 
 }

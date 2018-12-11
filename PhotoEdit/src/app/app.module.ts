@@ -19,10 +19,11 @@ import {WelcomeComponent} from './welcome/welcome.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', component: PoolComponent },
+  { path: 'pool', component: PoolComponent },
   { path: 'preview', component: PreviewComponent },
   { path: 'edit', component: EditComponent },
   { path: 'confirm', component: ConfirmComponent },
+  { path: '', component: WelcomeComponent}
 ];
 
 @NgModule({
