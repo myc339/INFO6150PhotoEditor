@@ -27,4 +27,13 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/']);
     this.shareInfoClass.logIn = false;
   }
+
+  firstPage(){
+    if(this.shareInfoClass.logIn){
+      this.router.navigate(['/pool']);
+    }
+    else{
+      this.router.navigate(['/']);
+    }
+  }
 }
