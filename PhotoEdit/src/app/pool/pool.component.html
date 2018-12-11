@@ -3,7 +3,9 @@
       <h1><span class="glyphicon glyphicon-tent"></span> Welcome To YelpCamp!</h1>
       <p>View our hand-picked campgrounds from all over the world</p>
       <p>
-         <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+          <input type="file" class = "upload">
+         <a class="btn btn-primary btn-lg" 
+         (click) = "onLoadAddNew()">Add New Campground</a>
       </p>
   </div>
 </header>
@@ -14,14 +16,17 @@
             <img src="">
             <div class="caption">
                 <h4></h4>
-            </div >
-            <div style='float:left' *ngFor="let item of images">
+
+            </div>
+            <p>
+                <a class="btn btn-primary" 
+                (click) = "onLoadMoreInfo()">More Info</a>
+            <div *ngFor="let item of images">
+
                 <span> {{item.img}}</span>
                 <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width+'px','height':height+'px'}"/>
             </div>
-            <p> 
-                <a href="" class="btn btn-primary">More Info</a>
-            </p>
+
          </div>
      </div>
 </div>
