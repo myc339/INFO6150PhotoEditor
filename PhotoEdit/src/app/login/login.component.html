@@ -15,7 +15,7 @@
                   <input [(ngModel)]="user.password" class="form-control" type="password" name="password" placeholder="password">
               </div>
               <div class="form-group">
-                <input [(ngModel)]="user.password" class="form-control" type="text" name="verify" placeholder="verify code">
+                <input [(ngModel)]="InputCode" class="form-control" type="text" name="verify" placeholder="verify code">
             </div>
               <div class="form-group">
               <canvas #checkCode width="80" height="35" class="checkCode" (click)="clickChange()"></canvas>

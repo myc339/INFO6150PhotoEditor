@@ -12,12 +12,19 @@ import {User} from'../users';
 export class LoginComponent implements OnInit {
   @ViewChild('checkCode') canvasRef: ElementRef;
   public code: any; // 验证码
-  constructor(private router : Router, private userService:UsersService, private shareInfoService:ShareInfoService) { }
- 
+  InputCode:string;
   shareInfoClass: ShareInfoClass = new ShareInfoClass;
   user: User=new User();
   Authentication: boolean = false;
   validation:boolean=false;
+  constructor(private router : Router, private userService:UsersService, private shareInfoService:ShareInfoService) { 
+    this.user={
+      userName:"",
+      account:"",
+      password:"",
+   
+    }
+  }
   authenticate() {
     this.UsersLogin();
     
@@ -31,21 +38,28 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit() {
-   this.user={
-     userName:"",
-     account:"",
-     password:"",
-  
-   }
+   
    this.clickChange();
   }
   private UsersLogin() {
-    console.log(this.user.account+this.user.password);
+
+    console.log(this.InputCode===this.code)
+    if(this.user===null)
+      {
+        console.log("input err")
+        return;
+      }
+    if(this.InputCode!==this.code)
+    {
+      return ;
+    }
     this.userService.Login(this.user.account, this.user.password).subscribe(users =>{ 
-      this.user = users;
+      
+      console.log(users)
       if(users!==null)
       {
         //share username and log in status
+        this.user = users;
         this.shareInfoClass.userAccount = this.user.account;
         this.shareInfoClass.logIn = true;
         this.shareInfoClass.userName = this.user.userName;
