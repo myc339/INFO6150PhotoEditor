@@ -3,9 +3,10 @@
       <h1><span class="glyphicon glyphicon-tent"></span> Welcome To YelpCamp!</h1>
       <p>View our hand-picked campgrounds from all over the world</p>
       <p>
-          <input type="file" class = "upload">
-         <a class="btn btn-primary btn-lg" 
-         (click) = "onLoadAddNew()">Add New Campground</a>
+       
+            <input id="img_input2" type="file" accept="image/*" (change)="fileChangeEvent($event)"/>
+            <label for="img_input2" class="img_label2" >Add New Campground
+    </label>
       </p>
   </div>
 </header>
@@ -23,8 +24,7 @@
                 (click) = "onLoadMoreInfo()">More Info</a>
             <div *ngFor="let item of images">
 
-                <span> {{item.img}}</span>
-                <img  (click)="priview($event)" src="{{item.img}}" [ngStyle]="{'width': width+'px','height':height+'px'}"/>
+                <img  (click)="preview($event)" [src]="sanitize(item.img)" [ngStyle]="{'width': width+'px','height':height+'px'}"/>
             </div>
 
          </div>
