@@ -1,32 +1,34 @@
 <header class="jumbotron">
   <div class="container">
-      <h1><span class="glyphicon glyphicon-tent"></span> Welcome To YelpCamp!</h1>
-      <p>View our hand-picked campgrounds from all over the world</p>
-      <p>
-       
-            <input id="img_input2" type="file" accept="image/*" (change)="fileChangeEvent($event)"/>
-            <label for="img_input2" class="img_label2" >Add New Campground
-    </label>
-      </p>
+    <h1><span class="glyphicon glyphicon-tent"></span> Welcome To YelpCamp!</h1>
+    <p>View our hand-picked campgrounds from all over the world</p>
+    <p>
+      <input
+      #userPhoto
+        id="img_input2"
+        type="file"
+        accept="image/*"
+        (change)="fileChangeEvent($event)"
+      />
+      <label for="img_input2" class="img_label2">Add New Campground </label>
+    </p>
   </div>
 </header>
 
 <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-     <div class="col-md-3 col-sm-6">
-         <div class="thumbnail">
-            <img src="">
-            <div class="caption">
-                <h4></h4>
+  <div class="col-md-3 col-sm-6">
+    <div class="thumbnail">
+      <img src="" />
+      <div class="caption"><h4></h4></div>
+      <p><a class="btn btn-primary" (click)="onLoadMoreInfo()">More Info</a></p>
 
-            </div>
-            <p>
-                <a class="btn btn-primary" 
-                (click) = "onLoadMoreInfo()">More Info</a>
-            <div *ngFor="let item of images">
-
-                <img  (click)="preview($event)" [src]="sanitize(item.img)" [ngStyle]="{'width': width+'px','height':height+'px'}"/>
-            </div>
-
-         </div>
-     </div>
+      <div *ngFor="let item of images">
+        <img
+          (click)="preview($event)"
+          [src]="sanitize(item.img)"
+          [ngStyle]="{ width: width + 'px', height: height + 'px' }"
+        />
+      </div>
+    </div>
+  </div>
 </div>

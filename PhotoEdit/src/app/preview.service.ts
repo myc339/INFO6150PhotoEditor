@@ -1,13 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core';
-
+import { ImagesInfo } from './ImagesInfo';
+import {Subject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class PreviewService {
-  Img :any;
-  getImg:EventEmitter<any>
-  constructor(){
-    
+ 
+  ImagesInfo:ImagesInfo;
+  getImg:any;
+  constructor(){ 
     this.getImg = new EventEmitter();
   }
 

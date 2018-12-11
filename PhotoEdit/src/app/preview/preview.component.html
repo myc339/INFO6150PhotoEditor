@@ -2,10 +2,11 @@
   <div class="row">
     <div class="col-md-10">
       <div  class="thumbnail">
-        <img class="img-responsive" src="{{Img}}">
+        
+        <img class="img-responsive" src="{{ImagesInfo?.localImg||ImagesInfo?.cloudImg}}">
         <div class="caption-full">
-         
-        <span>{{Img}}</span>
+   
+          <button (click)="confirm()">confirm</button>
           <a class="btn btn-success" routerLink="/edit">Edit</a>
         </div>
       </div>
