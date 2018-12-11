@@ -1,31 +1,46 @@
 <header class="jumbotron">
   <div id="header" class="container">
     <strong><span class="glyphicon glyphicon-envelope"></span> You Can Send Your Edit To Your Friends!</strong>
+
     <div>
       <br>
       <input type="text" [(ngModel)]="mails.title"/>
       <input type="text" [(ngModel)]="mails.To"/>
-      <button id="send" (click)="send()"><span class="glyphicon glyphicon-send"></span> Send</button>
+
+    <br>
+    <div class="row">
+      <div class="col-xs-12">
+        <input type="text">
+        <button id="send" (click)="send()">
+          <span class="glyphicon glyphicon-send"></span> Click To Send
+        </button>
+      </div>
+
     </div>
+  </div>
+  <br>
+  <div id="next" class="container">
+    <strong>You can also: </strong>
+      <button id="save" (click)="download()">
+        <span class="glyphicon glyphicon-cloud-download"></span> Save To My Computer
+      </button>
+      <button id="share" (click)="upload()">
+        <span class="glyphicon glyphicon-cloud-upload"></span> Share With Others
+      </button>
   </div>
 </header>
 
 <div class="container">
   <div class="row justify-content-between">
-    <div id="save" class="col-xs-4 text-left">
-      <button (click)="download()">
-        <span class="glyphicon glyphicon-cloud-download"></span> Save To My Computer
+    <div class="col-xs-4 text-left"> <button (click)="backToSelect()">
+        <span class="glyphicon glyphicon-triangle-left"></span> Create A New Card
+      </button></div>
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4 text-right">
+      <button (click)="backToEdit()">
+        <span class="glyphicon glyphicon-triangle-left"></span> Back To Edit
       </button>
     </div>
-    <div class="col-xs-6"></div>
-    <div id="saveInCloud" class="col-xs-2 text-right">
-      <button (click)="upload()">
-        <span class="glyphicon glyphicon-cloud-upload"></span> Save In Cloud
-      </button>
-    </div>
-
-    
-
   </div>
 </div>
 
@@ -36,10 +51,5 @@
       
     </div>
   </div>
-  <button (click)="backToSelect()">
-      <span class="glyphicon glyphicon-triangle-left"></span> Back To Select
-  </button>
-  <button (click)="backToEdit()">
-      <span class="glyphicon glyphicon-triangle-left"></span> Back To Edit
-  </button>
 </div>
+

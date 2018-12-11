@@ -25,7 +25,7 @@ export class ConfirmComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.storeAsCanvas();
+   // this.storeAsCanvas();
   }
   send()
   {
