@@ -37,13 +37,9 @@ export class PoolComponent implements OnInit {
   }
   //select img by click image on page
   preview($event) {
-    this.ImagesInfo.cloudImg = $event.target.src;
-    // this.ImagesInfo.localImg =
-    //   "https://myimagebank.oss-us-west-1.aliyuncs.com/1.jpeg";
+    this.ImagesInfo.cloudImg = $event.target.src;   
     console.log(this.ImagesInfo);
     this.previewService.ImagesInfo=this.ImagesInfo;
-    //this.previewService.getImg.emit(this.ImagesInfo);
-    // this.router.navigate(['preview']);
     this.navigate();
   }
 
@@ -52,15 +48,10 @@ export class PoolComponent implements OnInit {
     if (fileInput.target.files && fileInput.target.files[0]) {
       var reader = new FileReader();
 
-      reader.onload = function(e: any) {
-        // var image = new Image();
+      reader.onload = function(e: any) {      
         this.ImagesInfo.localImg = e.target.result;
         console.log(this.ImagesInfo)
-        //this.previewService.ImagesInfo=this.ImagesInfo;
-        this.previewService.getImg.emit(this.ImagesInfo);
-        // image.src = e.target.result;
-        // image.onload=()=>{
-        // }
+        this.previewService.getImg.emit(this.ImagesInfo);  
       }.bind(this);
       reader.readAsDataURL(fileInput.target.files[0]);
     }
