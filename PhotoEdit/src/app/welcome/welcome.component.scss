@@ -1,0 +1,31 @@
+.carousel-inner {
+  position: relative
+}
+
+
+
+.h {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  background-color: rgba($color: #856f6e, $alpha: 0.5);
+  border: #ffffff solid 3px;
+  text-align: center;
+  // line-height: 100%;
+
+  opacity: 5;
+
+}
+
+.word {
+  padding: 18%;
+  font-size: 20px;
+  color: #ffffff;
+  font: Helvetica;
+}
+
+.title{
+    font-size: 40px
+}
