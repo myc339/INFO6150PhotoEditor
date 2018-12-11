@@ -4,8 +4,6 @@ import {PreviewService} from '../preview.service';
 import { ImagesInfo } from "../ImagesInfo";
 import { LoadcloudimageService } from "../loadcloudimage.service";
 import { Subscription } from "rxjs";
-
-import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -25,12 +23,9 @@ export class EditComponent implements OnInit {
   left:Number=20;
   top:Number=20;
   
-  constructor(private previewService: PreviewService) {
+  constructor(private previewService: PreviewService,private router:Router) {
     
   }
-
-
-  constructor(private router:Router) { }
 
 
   ngOnInit() {
