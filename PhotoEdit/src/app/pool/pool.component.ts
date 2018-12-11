@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Images } from '../Images';
 import { ImagesService } from '../images.service';
+import { PreviewService } from '../preview.service';
 
 @Component({
   selector: 'app-pool',
@@ -11,16 +12,22 @@ export class PoolComponent implements OnInit {
   images:Images;
   width:"200px";
   height:"50px";
-  constructor(private imageservice:ImagesService) { }
+  constructor(private imageservice:ImagesService, private previewService:PreviewService) {
+    
+   }
 
   ngOnInit() {
     this.imageservice.retriveAllImage().subscribe((images)=>{
       this.images=images;
       console.log(this.images);
     })
+    this.previewService.getImg.emit("aa");
   }
   priview($event){
     console.log($event);
+  }
+  
+  upload(){
   }
 
 }
