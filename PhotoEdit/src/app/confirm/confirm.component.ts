@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from "@angular/core";
 import * as html2canvas from "html2canvas";
 import * as OSS from "ali-oss";
@@ -14,13 +15,14 @@ export class ConfirmComponent implements OnInit {
     bucket: "myimagebank",
     region: "oss-us-west-1"
   });
-  constructor() {}
+  constructor(private router:Router) {}
 
   ngOnInit() {
     this.storeAsCanvas();
   }
   send()
   {
+    alert("Send successfully!");
 
   }
   download() {
@@ -88,5 +90,13 @@ export class ConfirmComponent implements OnInit {
       null
     );
     oA.dispatchEvent(event);
+  }
+
+  backToSelect(){
+    this.router.navigate(['/pool']);
+  }
+
+  backToEdit(){
+    this.router.navigate(['/edit']);
   }
 }
