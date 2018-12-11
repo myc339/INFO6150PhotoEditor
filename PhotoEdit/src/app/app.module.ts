@@ -14,7 +14,8 @@ import { Routes, RouterModule} from "@angular/router"
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {PreviewService} from './preview.service';
-import { WelcomeComponent } from './welcome/welcome.component';
+import {ImageEditingDirective} from './image-editing.directive';
+import {WelcomeComponent} from './welcome/welcome.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     PoolComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ImageEditingDirective
   ],
   imports: [
     BrowserModule,

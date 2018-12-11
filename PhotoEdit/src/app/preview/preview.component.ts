@@ -17,17 +17,15 @@ export class PreviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log("call oninit");
     //console.log(this.previewService.ImagesInfo);
     this.ImagesInfo=this.previewService.ImagesInfo;
-    console.log(this.ImagesInfo)
-    this.paramsSubscription = this.previewService.getImg.subscribe(data => {
-      console.log("call subscribe");     
+    this.paramsSubscription = this.previewService.getImg.subscribe(data => {    
       this.ImagesInfo = data;
     });
   }
-  confirm() {
-    console.log(this.ImagesInfo);
+  confirm()
+  {
+    this.previewService.ImagesInfo=this.ImagesInfo;
   }
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
