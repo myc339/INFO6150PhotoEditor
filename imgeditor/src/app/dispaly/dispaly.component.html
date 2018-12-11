@@ -1,0 +1,9 @@
+
+<div id="display" [ngStyle]="{'width': width+'px','height':height+'px'}" >
+  <img *ngIf="imageInfo.image" [src]="imageInfo.image" [ngStyle]="{'width': (width>imageInfo.width?
+  imageInfo.width: width)+'px','height':(height>imageInfo.height?imageInfo.height:height)+'px'
+,'left':left+'px','top':top+'px'}">
+  
+
+    
+</div>

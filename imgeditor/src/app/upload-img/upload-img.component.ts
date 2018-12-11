@@ -1,5 +1,9 @@
+import { ImageInfo } from './../imageInfo';
+import { GetImageService } from './../get-image.service';
 // import { Component, OnInit } from '@angular/core';
-import { Component, ViewChild, Inject, OnInit } from '@angular/core';
+import { Component, ViewChild, Inject, OnInit, ElementRef } from '@angular/core';
+import { DispalyComponent } from '../dispaly/dispaly.component';
+import { from } from 'rxjs';
 
 // import { AngularCropperjsComponent } from 'angular-cropperjs';
 
@@ -10,12 +14,18 @@ import { Component, ViewChild, Inject, OnInit } from '@angular/core';
 })
 export class UploadImgComponent implements OnInit{
 
-  constructor() { }
+
+
+  constructor(private service: GetImageService) { 
+  }
+
 
   ngOnInit() {
+    
   }
   // cropperjs setting
-  imageUrl = null;
+
+  imageInfo:ImageInfo = new ImageInfo();
   // croppedImage = null;
   // //@ViewChild(AngularCropperjsComponent) angularCropper: AngularCropperjsComponent;
   // config = Object.assign({
@@ -26,17 +36,8 @@ export class UploadImgComponent implements OnInit{
   //   }.bind(this)
   // });
 
-  // slider values to zoom image
-  // sliderValue = 0;
-  // preValue = 0;
-  /**
-   * Reset all data for new image
-   */
   reset() {
-    this.imageUrl = null;
-    // this.croppedImage = null;
-    // this.sliderValue = 0;
-    // this.preValue = 0;
+    //this.imageInfo.image = null;
   }
   /**
    * 
@@ -45,14 +46,31 @@ export class UploadImgComponent implements OnInit{
   fileChangeEvent(fileInput: any) {
     if (fileInput.target.files && fileInput.target.files[0]) {
       var reader = new FileReader();
-      this.reset();
+      //this.reset();
       reader.onload = function (e : any) {
           //$('#preview').attr('src', e.target.result);
-          console.log(e.target.result);
-          this.imageUrl = e.target.result;
-      }.bind(this);
+          // console.log(e.target.result);
+          console.log(this.imageInfo);
+          this.imageInfo.image = e.target.result;
 
+          var image = new Image();
+          image.src = e.target.result;
+          console.log(image.width);
+          image.onload=()=>{
+            console.log(image.width);
+            
+            this.imageInfo.width=image.width;
+            this.imageInfo.height=image.height;
+          }
+          
+
+          this.service.getImage.emit(this.imageInfo);
+
+      }.bind(this);
+      
+      
       reader.readAsDataURL(fileInput.target.files[0]);
+     
     }
   }
 }

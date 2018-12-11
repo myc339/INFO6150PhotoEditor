@@ -13,6 +13,10 @@ import { RotateComponent } from './rotate/rotate.component';
 import { MembershipMenuComponent } from './membership-menu/membership-menu.component';
 import { SaveComponent } from './save/save.component';
 import { MenubarComponent } from './menubar/menubar.component';
+import { DispalyComponent } from './dispaly/dispaly.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { GetImageService } from './get-image.service';
 // import { AngularCropperjsModule } from 'angular-cropperjs';
 @NgModule({
   declarations: [
@@ -27,13 +31,18 @@ import { MenubarComponent } from './menubar/menubar.component';
     
     MembershipMenuComponent,
     SaveComponent,
-    MenubarComponent
+    MenubarComponent,
+    DispalyComponent,
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+
+  providers: [GetImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
