@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import {PreviewService} from './preview.service';
 import {ImageEditingDirective} from './image-editing.directive';
 import {WelcomeComponent} from './welcome/welcome.component';
+import { ReEditComponent } from './re-edit/re-edit.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
     PoolComponent,
     WelcomeComponent,
     ImageEditingDirective,
+    ReEditComponent,
   ],
   imports: [
     BrowserModule,

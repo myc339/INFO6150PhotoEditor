@@ -43,21 +43,25 @@ export class LoginComponent implements OnInit {
   }
   private UsersLogin() {
 
-    console.log(this.InputCode===this.code)
-    if(this.user===null)
+    console.log(this.user.account);
+    if(this.user.account=="")
       {
-        console.log("input err")
+        alert("please input user");
         return;
       }
-    if(this.InputCode!==this.code)
+    else if(this.user.password == ""){
+      alert("please input password");
+        return;
+    }
+    else if(this.InputCode!==this.code)
     {
+      alert("invalid code")
       return ;
     }
     this.userService.Login(this.user.account, this.user.password).subscribe(users =>{ 
       
       console.log(users)
-      if(users!==null)
-      {
+      if(users !==null){
         //share username and log in status
         this.user = users;
         this.shareInfoClass.userAccount = this.user.account;
@@ -68,6 +72,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/pool']);
         this.Authentication=true;
        
+      }
+      else{
+        alert("invalid password");
       }
     }
       );
