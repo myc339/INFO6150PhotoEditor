@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
 import { AngularCropperjsComponent } from 'angular-cropperjs';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
+@Component({
+  selector: 'app-re-edit',
+  templateUrl: './re-edit.component.html',
+  styleUrls: ['./re-edit.component.scss']
+})
 export class ReEditComponent implements OnInit {
   imageUrl = null;
   croppedImage = null;
@@ -191,24 +195,4 @@ export class ReEditComponent implements OnInit {
   }
 
 
-}
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html',
-})
-export class DialogOverviewExampleDialog {
-  croppedImage = null;
-
-  // constructor for dialog
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-  }
-
-  /**
-   * close dialog when click outside of it
-   */
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 }
