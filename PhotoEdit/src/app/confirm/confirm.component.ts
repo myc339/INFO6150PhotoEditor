@@ -46,7 +46,6 @@ export class ConfirmComponent implements OnInit {
     
     this.imagesInfo=this.previewService.ImagesInfo;
     console.log(this.imagesInfo);
-    this.imgUrl=this.imagesInfo.tempImg;
     this.canvasImg = this.imagesInfo.tempImg;
  
     console.log(this.canvasImg);
