@@ -38,10 +38,10 @@ export class ConfirmComponent implements OnInit {
   {
    this.mails.To="";
     this.mails.title="";
-    this.mails.content="";}
-  
 
+    this.mails.content="";
   }
+
 
   ngOnInit() {
     
