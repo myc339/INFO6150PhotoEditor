@@ -2,8 +2,13 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from "@angular/core";
 import * as html2canvas from "html2canvas";
 import * as OSS from "ali-oss";
+
 import { Mails } from '../mails';
 import { MailserviceService } from '../mailservice.service';
+
+import { ImagesInfo } from "../ImagesInfo";
+import {PreviewService} from '../preview.service';
+
 @Component({
   selector: "app-confirm",
   templateUrl: "./confirm.component.html",
@@ -11,21 +16,31 @@ import { MailserviceService } from '../mailservice.service';
 })
 export class ConfirmComponent implements OnInit {
   canvasImg: any;
+
   mails:Mails=new Mails();
+
+  imgUrl = null;
+
   client = new OSS({
     accessKeyId: "LTAIyUXGzl6aymVM",
     accessKeySecret: "obLupIX7fk2yvVDY320QSH46CKH8JU",
     bucket: "myimagebank",
     region: "oss-us-west-1"
   });
-  constructor(private router:Router,private mailService:MailserviceService) {
-    this.mails.To="";
-    this.mails.title="";
-    this.mails.content="https://myimagebank.oss-us-west-1.aliyuncs.com/1.jpeg";
-  }
 
+  imagesInfo: ImagesInfo = new ImagesInfo();
+  constructor(private router:Router, private previewService: PreviewService,private mailService:MailserviceService) {
+   this.mails.To="";
+    this.mails.title="";
+    this.mails.content="https://myimagebank.oss-us-west-1.aliyuncs.com/1.jpeg";}
+  }
   ngOnInit() {
-   // this.storeAsCanvas();
+    // this.storeAsCanvas();
+    
+    this.imagesInfo=this.previewService.ImagesInfo;
+    console.log(this.imagesInfo);
+    this.imgUrl = this.imagesInfo.localImg;
+
   }
   send()
   {
