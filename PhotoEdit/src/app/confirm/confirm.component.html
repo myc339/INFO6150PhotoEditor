@@ -1,26 +1,31 @@
 <header class="jumbotron">
   <div id="header" class="container">
     <strong><span class="glyphicon glyphicon-envelope"></span> You Can Send Your Edit To Your Friends!</strong>
-    <br>
     <div class="row">
-      <div class="col-xs-12">
-        <input type="text">
-        <button id="send" (click)="send()">
-          <span class="glyphicon glyphicon-send"></span> Click To Send
+      <div class="col-xs-4">
+        <p>Title</p><input type="text" [(ngModel)]="mails.title" />
+      </div>
+      <div class="col-xs-4">
+        <p>Address</p><input type="text" [(ngModel)]="mails.To" />
+      </div>
+      <div id="next" class="col-xs-4">
+        <p></p>
+          <button id="send" (click)="send()">
+              <span class="glyphicon glyphicon-send"></span> Click To Send
+            </button>
+        </div>
+    </div>
+      <div id="next" class="col-xs-12">
+        <br>
+        <strong>You can also: </strong>
+        <button id="save" (click)="download()">
+          <span class="glyphicon glyphicon-cloud-download"></span> Save To My Computer
+        </button>
+        <button id="share" (click)="upload()">
+          <span class="glyphicon glyphicon-cloud-upload"></span> Share With Others
         </button>
       </div>
     </div>
-  </div>
-  <br>
-  <div id="next" class="container">
-    <strong>You can also: </strong>
-      <button id="save" (click)="download()">
-        <span class="glyphicon glyphicon-cloud-download"></span> Save To My Computer
-      </button>
-      <button id="share" (click)="upload()">
-        <span class="glyphicon glyphicon-cloud-upload"></span> Share With Others
-      </button>
-  </div>
 </header>
 
 <div class="container">
@@ -40,9 +45,8 @@
 <div class="container">
   <div class="row">
     <div class="thumbnail">
-      <img class="img-responsive" src="https://static1.squarespace.com/static/5a4e5622aeb625db0f6ae7f8/5af35a3c758d46bbcf56c370/5afc9463352f53fce4e3254b/1526502705039/img_wedding-design_anella.png?format=2500w">
-      
+      <img class="img-responsive" [src]="imgUrl">
+
     </div>
   </div>
 </div>
-
