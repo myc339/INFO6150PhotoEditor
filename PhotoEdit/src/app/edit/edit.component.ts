@@ -49,6 +49,18 @@ export class EditComponent implements OnInit {
   sepiaOn:boolean = false;
 
 
+  grayscaleValue:number = 10;
+  contrastValue:number = 0;
+  blurValue:number = 0;
+  saturateValue:number = 0;
+  brightnessValue:number = 0;
+  hue_rotateValue:number = 0;
+  invertValue:number = 0;
+  drop_shadowValue:number = 0;
+  opacityValue:number = 0;
+  sepiaValue:number = 0;
+
+
   
   canvasImg: any;
   constructor(private previewService: PreviewService,private router:Router, public dialog: MatDialog) {
@@ -196,6 +208,7 @@ export class EditComponent implements OnInit {
 
   goToReEdit(){
     this.ImagesInfo.localImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
+
     this.previewService.ImagesInfo=this.ImagesInfo;
     this.router.navigate(['/reEdit']);
   }
@@ -237,6 +250,21 @@ export class EditComponent implements OnInit {
     this.opacityOn = false;
     this.sepiaOn = false;
   }
+  grayscaleAdd(){
+    // let num = parseInt(this.grayscalValue);
+    if(this.grayscaleValue<100){
+      this.grayscaleValue = this.grayscaleValue+10;
+      
+      console.log("addddddd"+this.grayscaleValue);
+      console.log(this.imageUrl);
+    }
+  }
+  grayscaleMinus(){
+    // let num = parseInt(this.grayscalValue);
+    if(this.grayscaleValue>0){
+      this.grayscaleValue = this.grayscaleValue-10;
+    }
+  }
 
   saturate(){
     this.saturateOn = !this.saturateOn;
@@ -249,6 +277,16 @@ export class EditComponent implements OnInit {
     this.drop_shadowOn = false;
     this.opacityOn = false;
     this.sepiaOn = false;
+  }
+  saturateAdd(){
+    if(this.saturateValue<1){
+      this.saturateValue = this.saturateValue+0.1;
+    }
+  }
+  saturateMinus(){
+    if(this.saturateValue>0){
+      this.saturateValue = this.saturateValue-0.1;
+    }
   }
 
   contrast(){
@@ -263,6 +301,16 @@ export class EditComponent implements OnInit {
     this.opacityOn = false;
     this.sepiaOn = false;
   }
+  contrastAdd(){
+    if(this.contrastValue<1){
+      this.contrastValue = this.contrastValue+0.1;
+    }
+  }
+  contrastMinus(){
+    if(this.contrastValue>0){
+      this.contrastValue = this.contrastValue-0.1;
+    }
+  }
 
   blur(){
     this.blurOn = !this.blurOn;
@@ -276,6 +324,16 @@ export class EditComponent implements OnInit {
     this.opacityOn = false;
     this.sepiaOn = false;
   }
+  blurAdd(){
+    if(this.blurValue<1){
+      this.blurValue = this.blurValue+0.1;
+    }
+  }
+  blurMinus(){
+    if(this.blurValue>0){
+      this.blurValue = this.blurValue-0.1;
+    }
+  }
   brightness(){
     this.brightnessOn = !this.brightnessOn;
     this.grayscaleOn= false;
@@ -287,6 +345,16 @@ export class EditComponent implements OnInit {
     this.drop_shadowOn = false;
     this.opacityOn = false;
     this.sepiaOn = false;
+  }
+  brightnessAdd(){
+    if(this.brightnessValue<1){
+      this.brightnessValue = this.brightnessValue+0.1;
+    }
+  }
+  brightnessMinus(){
+    if(this.brightnessValue>0){
+      this.brightnessValue = this.brightnessValue-0.1;
+    }
   }
   hue_rotate(){
     this.hue_rotateOn = !this.hue_rotateOn;
@@ -300,6 +368,16 @@ export class EditComponent implements OnInit {
     this.opacityOn = false;
     this.sepiaOn = false;
   }
+  hue_rotateAdd(){
+    if(this.hue_rotateValue<1){
+      this.hue_rotateValue = this.hue_rotateValue+0.1;
+    }
+  }
+  hue_rotateMinus(){
+    if(this.hue_rotateValue>0){
+      this.hue_rotateValue = this.hue_rotateValue-0.1;
+    }
+  }
   invert(){
     this.invertOn = !this.invertOn;
     this.grayscaleOn= false;
@@ -311,6 +389,16 @@ export class EditComponent implements OnInit {
     this.drop_shadowOn = false;
     this.opacityOn = false;
     this.sepiaOn = false;
+  }
+  invertAdd(){
+    if(this.invertValue<1){
+      this.invertValue = this.invertValue+0.1;
+    }
+  }
+  invertMinus(){
+    if(this.invertValue>0){
+      this.invertValue = this.invertValue-0.1;
+    }
   }
   drop_shadow(){
     this.drop_shadowOn = !this.drop_shadowOn;
@@ -324,6 +412,16 @@ export class EditComponent implements OnInit {
     this.opacityOn = false;
     this.sepiaOn = false;
   }
+  drop_shadowAdd(){
+    if(this.drop_shadowValue<1){
+      this.drop_shadowValue = this.drop_shadowValue+0.1;
+    }
+  }
+  drop_shadowMinus(){
+    if(this.drop_shadowValue>0){
+      this.drop_shadowValue = this.drop_shadowValue-0.1;
+    }
+  }
   opacity(){
     this.opacityOn = !this.opacityOn;
     this.grayscaleOn= false;
@@ -335,6 +433,16 @@ export class EditComponent implements OnInit {
     this.invertOn = false;
     this.drop_shadowOn = false;
     this.sepiaOn = false;
+  }
+  opacityAdd(){
+    if(this.opacityValue<1){
+      this.opacityValue = this.opacityValue+0.1;
+    }
+  }
+  opacityMinus(){
+    if(this.opacityValue>0){
+      this.opacityValue = this.opacityValue-0.1;
+    }
   }
   sepia(){
     this.sepiaOn = !this.sepiaOn;
@@ -348,6 +456,17 @@ export class EditComponent implements OnInit {
     this.drop_shadowOn = false;
     this.opacityOn = false;
   }
+  sepiaAdd(){
+    if(this.sepiaValue<1){
+      this.sepiaValue = this.sepiaValue+0.1;
+    }
+  }
+  sepiaMinus(){
+    if(this.sepiaValue>0){
+      this.sepiaValue = this.sepiaValue-0.1;
+    }
+  }
+
 
 
 }

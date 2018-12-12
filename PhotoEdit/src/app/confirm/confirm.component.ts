@@ -40,6 +40,7 @@ export class ConfirmComponent implements OnInit {
     this.mails.title="";
 
     this.mails.content="";
+
   }
 
 
