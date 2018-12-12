@@ -18,7 +18,7 @@ import { Images } from '../Images';
 })
 export class ConfirmComponent implements OnInit {
   
-   pattern:any=/^[0-9A-Za-z]+(\.[a-zA-Z0-9_-]+)@[0-9A-Za-z_]+(\.[a-zA-Z0-9_-]+)+$/g;
+   pattern:any=/^[0-9A-Za-z]+(\.[a-zA-Z0-9_-]+)*@[0-9A-Za-z_]+(\.[a-zA-Z0-9_-]+)+$/g;
   mails:Mails=new Mails();
   canvasImg:any;
   header:string="https://myimagebank.oss-us-west-1.aliyuncs.com/";
@@ -97,10 +97,11 @@ export class ConfirmComponent implements OnInit {
     let storeAs = obj + suffix;
     console.log(storeAs);
     console.log(obj);
+    // multipartUpload
    file= this.dataURItoFile(file,storeAs);
-   this.client.initiateMultipartUpload();
+   
     this.client
-      .uploadPart(storeAs, file)
+      .multipartUpload(storeAs, file)
       .then(result => {
         console.log(result);
        
@@ -110,7 +111,7 @@ export class ConfirmComponent implements OnInit {
         console.log(err);
       });
       return storeAs;
-      this.client.completeMultipartUpload();
+      
   }
  
 
@@ -128,6 +129,54 @@ export class ConfirmComponent implements OnInit {
     // return new Blob([ab], { type: 'image/jpeg' });
     return new File([ia], fileName, {type: 'image/jpeg', lastModified: Date.now()})
   }
+  // uploadFile(file) {
+  //   let suffix = ".png";
+
+  //   let obj = new Date().getTime();
+  //   let storeAs = obj + suffix;
+  //   console.log(storeAs);
+  //   console.log(obj);
+    
+
+    // let type = 'png';
+    // file = file.replace('data:image/' + type + ';base64,', '');
+
+   
+  //   this.client.put( storeAs, new Buffer(file, 'base64'),(result)=>{
+  //     return storeAs;
+  //   })
+  // }
+    //file= this.dataURItoFile(file,storeAs);
+  //  this.client.initiateMultipartUpload();
+  //   this.client
+  //     .uploadPart(storeAs, file)
+  //     .then(result => {
+  //       console.log(result);
+       
+  //     }
+  //       )
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+     
+  //     this.client.completeMultipartUpload();
+  // }
+ 
+
+  //  dataURItoFile(dataURI, fileName) {
+
+
+    
+    // var byteString = atob(dataURI.split(',')[1]);
+   
+    // var ab = new ArrayBuffer(byteString.length);
+    // var ia = new Uint8Array(ab);
+    // for (var i = 0; i < byteString.length; i++) {
+    //  ia[i] = byteString.charCodeAt(i);
+    // }
+    // // return new Blob([ab], { type: 'image/jpeg' });
+    // return new File([ia], fileName, {type: 'image/jpeg', lastModified: Date.now()})
+  // }
 //   b64toBlob(b64Data, contentType='', sliceSize=512) {
 //     const byteCharacters = atob(b64Data);
 //     const byteArrays = [];

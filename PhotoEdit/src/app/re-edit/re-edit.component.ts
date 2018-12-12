@@ -59,7 +59,7 @@ export class ReEditComponent implements OnInit {
     
     console.log(this.previewService.ImagesInfo);
     this.ImagesInfo=this.previewService.ImagesInfo;
-    this.imageUrl = this.ImagesInfo.localImg;
+    this.imageUrl = this.ImagesInfo.tempImg;
     
 
     
