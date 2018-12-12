@@ -239,8 +239,10 @@ canvasImg: any;
   grayscale(){
     
     this.ImagesInfo.localImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
-    //this.ImagesInfo.localImg = this.imageUrl;
+    this.ImagesInfo.localImg = this.imageUrl;
     this.previewService.ImagesInfo=this.ImagesInfo;
+    this.getEl();
+
     this.grayscaleOn = !this.grayscaleOn;
     this.contrastOn = false;
     this.blurOn = false;
