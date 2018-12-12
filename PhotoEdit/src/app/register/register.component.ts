@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   onLoadPool(){
     this.router.navigate(['/']);
   }
-
+  //regist acoount
   register()
   { 
     console.log(this.user.userName);

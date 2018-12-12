@@ -38,6 +38,7 @@ export class ConfirmComponent implements OnInit {
    this.mails.To="";
     this.mails.title="";
     this.mails.content="";
+
   }
 
 
@@ -48,13 +49,19 @@ export class ConfirmComponent implements OnInit {
     this.canvasImg=this.imagesInfo.tempImg;
     console.log(this.canvasImg);
   }
+  //send email
   send()
   { 
+    if(this.mails.title == ""){
+      alert("Please input your title");
+      return;
+    }
     if(!this.mails.To.match(this.pattern))
     {
       alert("invalid mail");
       return ;
     }
+
     if(this.mails.title == ""){
       alert("Please input your title");
       return;
@@ -63,14 +70,17 @@ export class ConfirmComponent implements OnInit {
    let path=this.header+this.uploadFile(this.canvasImg);
 
     this.mails.content= path;
+
     console.log(this.mails.content);
     this.mailService.SendMail(this.mails).subscribe((data)=>{
     });
-
+    alert("send successfully");
   }
+  //download file
   download() {
     this.downloadFile(new Date(), this.canvasImg);
   }
+  //upload to server
   upload() {
     
    
@@ -80,7 +90,7 @@ export class ConfirmComponent implements OnInit {
 
     });
   }
-
+  //upload fille
   uploadFile(file) {
     let suffix = ".png";
     let obj = new Date().getTime();
@@ -100,7 +110,10 @@ export class ConfirmComponent implements OnInit {
       });
       return storeAs;
   }
+
    //dataURItoFile(dataURI, fileName) {
+
+
     
   //   var byteString = atob(dataURI.split(',')[1]);
    
@@ -134,7 +147,7 @@ export class ConfirmComponent implements OnInit {
 }
 
   
-
+  //download file
   downloadFile(filename, content) {
      console.log("download");
     var base64Img = content;
