@@ -69,6 +69,7 @@ export class ReEditComponent implements OnInit {
     this.ImagesInfo = this.previewService.ImagesInfo;
     this.imageUrl = this.ImagesInfo.localImg;
     this.getEl();
+
   }
 
   goToConfirm() {
