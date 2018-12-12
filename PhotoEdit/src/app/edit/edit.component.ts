@@ -112,24 +112,12 @@ export class EditComponent implements OnInit {
     this.context.lineTo(300,150);
     this.context.stroke();
   }
-  /**
-   * show dialog when click button "crop"
-   */
-  cropEvent() {
-    //this.croppedImage = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
-    // let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-    //   width: '400px',
-    //   data: { imageData:  this.angularCropper.cropper.getCroppedCanvas().toDataURL()}
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    // });
-    console.log(this.angularCropper.cropper.getCroppedCanvas().toDataURL());
-  }
-
+  
+    //console.log(this.angularCropper.cropper.getCroppedCanvas().toDataURL());
   
 
+  
+  //route
   goToConfirm(){
     this.ImagesInfo.localImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
     this.previewService.ImagesInfo=this.ImagesInfo;
