@@ -97,9 +97,24 @@
   <!-- <img src="{{ImagesInfo?.localImg||ImagesInfo?.cloudImg}}"
    [ngStyle]="{'left': left+'px','top':top+'px'}"
    appImageEditing /> -->
+<<<<<<< HEAD
   <mat-slider [(ngModel)]="sliderValue" (change)="onChange()"></mat-slider>
   <angular-cropper #angularCropper [cropperOptions]="config" [imageUrl]="imageUrl"></angular-cropper>
   <div *ngIf="croppedImage"><img class="croppedImage" [src]="croppedImage"></div>
   <canvas #myCanvas></canvas>
+=======
+    <button (click)="zoomIn()">+</button>
+    <button (click)="zoomOut()">-</button>
+    <button (click)="cropEvent()">Crop</button>
+    <mat-slider
+    [(ngModel)]="sliderValue"
+    (change)="onChange()"></mat-slider>
+    <angular-cropper #angularCropper [cropperOptions]="config" [imageUrl]="imageUrl" [ngStyle]="{'filter': 'grayscale('+grayscaleValue+'%)'}"></angular-cropper>
+    <div *ngIf="croppedImage"><img class="croppedImage" [src]="croppedImage" ></div>
+    <img class="newImg"  [ngStyle]="{'diplay': none}">
+    <canvas #myCanvas></canvas> 
+    <canvas class ="newCanvas"></canvas>
+    
+>>>>>>> Chang the method of edit style
 </div>
 

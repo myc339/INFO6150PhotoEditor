@@ -1,6 +1,6 @@
 
-import { Component, OnInit,ViewChild,ElementRef, Inject } from '@angular/core';
-import {PreviewService} from '../preview.service';
+import { Component, OnInit,ViewChild,ElementRef, Inject, Renderer2 } from '@angular/core';
+import { PreviewService } from '../preview.service';
 import { ImagesInfo } from "../ImagesInfo";
 import * as html2canvas from "html2canvas";
 import { LoadcloudimageService } from "../loadcloudimage.service";
@@ -60,10 +60,19 @@ export class EditComponent implements OnInit {
   opacityValue:number = 0;
   sepiaValue:number = 0;
 
+  //edit style element
+  newCanvas:HTMLCanvasElement;
+  newImg:HTMLImageElement;
+  ctx:any;
 
   
-  canvasImg: any;
-  constructor(private previewService: PreviewService,private router:Router, public dialog: MatDialog) {
+
+canvasImg: any;
+  constructor(private previewService: PreviewService, 
+    private router:Router, 
+    public dialog: MatDialog, 
+    private el:ElementRef,
+    private renderer2: Renderer2) {
     
   }
 
@@ -180,6 +189,7 @@ export class EditComponent implements OnInit {
       this.sliderValue = this.preValue + Math.floor((newRatio - oldRatio) * 100);
     }
     this.preValue = this.sliderValue;
+    
   }
 
   private draw() {
@@ -211,6 +221,7 @@ export class EditComponent implements OnInit {
 
     this.previewService.ImagesInfo=this.ImagesInfo;
     this.router.navigate(['/reEdit']);
+
   }
 
   // storeAsCanvas(img): any {
@@ -239,6 +250,10 @@ export class EditComponent implements OnInit {
 
 
   grayscale(){
+    
+    this.ImagesInfo.localImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
+    //this.ImagesInfo.localImg = this.imageUrl;
+    this.previewService.ImagesInfo=this.ImagesInfo;
     this.grayscaleOn = !this.grayscaleOn;
     this.contrastOn = false;
     this.blurOn = false;
@@ -252,6 +267,7 @@ export class EditComponent implements OnInit {
   }
   grayscaleAdd(){
     // let num = parseInt(this.grayscalValue);
+    
     if(this.grayscaleValue<100){
       this.grayscaleValue = this.grayscaleValue+10;
       
@@ -467,9 +483,64 @@ export class EditComponent implements OnInit {
     }
   }
 
+  getEl(){
+    this.newCanvas = this.el.nativeElement.querySelector('.newCanvas');
+    this.newImg = this.el.nativeElement.querySelector('.newImg');
+    this.renderer2.setStyle(this.newImg, "display", "none");
+    console.log(this.newImg);
+    this.newImg.src = this.ImagesInfo.localImg;
+    console.log(this.newImg.src);
+    this.ctx = this.newCanvas.getContext("2d");
+
+    this.editStyle();
+
+  }
+
+  editStyle(){
+    console.log(this.newImg);
+    console.log(this.newCanvas);
+    this.newImg.onload = ()=>{
+    
+            this.ctx.drawImage(this.newImg,0,0,100,200);
+            var pixels = this.ctx.getImageData(0,0,100,200);
+            var pixeldata = pixels.data;
+            for(var i=0,len = pixeldata.length ;i<len;i+=4){
+                var gray =parseInt(pixels.data[i])*0.9 + parseInt(pixels.data[i+1])*0.9 + parseInt(pixels.data[i+2])*0.11;
+                pixels.data[i] = gray;
+                pixels.data[i+1] = gray;
+                pixels.data[i+2] = gray;
+            }
+      this.ctx.clearRect(0,0,100,200);
+      
+      this.ctx.putImageData(pixels,0,0);
+      console.log(this.ctx);
+
+      this.ctx.font = "20px Arial";
+      this.ctx.fillText("hellow",50,100);
+
+      console.log(this.ctx.font);
+      console.log(this.ctx.getImageData);
+
+      this.downLoad(this.saveAsPNG(this.newCanvas));
+  }
+  }
+
+	saveAsPNG(canvas) {
+    return canvas.toDataURL("image/png");
+  }
+	downLoad(url){
+    var oA = document.createElement("a");
+    oA.download = '';// 设置下载的文件名，默认是'下载'
+    oA.href = url;
+    document.body.appendChild(oA);
+    oA.click();
+    oA.remove(); // 下载之后把创建的元素删除
+
+  }
 
 
 }
+
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-overview-example-dialog.html',
