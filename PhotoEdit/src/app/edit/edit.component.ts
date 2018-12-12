@@ -36,8 +36,7 @@ export class EditComponent implements OnInit {
   private paramsSubscription: Subscription;
   Img: any;
 
-  left:Number=20;
-  top:Number=20;
+  
   grayscaleOn:boolean = false;
   contrastOn:boolean = false;
   blurOn:boolean = false;
@@ -60,8 +59,29 @@ export class EditComponent implements OnInit {
     
     console.log(this.previewService.ImagesInfo);
     this.ImagesInfo=this.previewService.ImagesInfo;
-    this.imageUrl = this.ImagesInfo.localImg;
+    if(this.ImagesInfo.localImg!==undefined)
+    {
+      this.imageUrl = this.ImagesInfo.localImg;
+      console.log(  this.imageUrl);
+    }
+    if(this.ImagesInfo.cloudImg!==undefined)
+    {
+ var canvas=document.createElement("canvas");
+let context = canvas.getContext('2d');
+ let image =new Image();
+ image.crossOrigin="Anonymous";
+//  +"?timeStamp="+new Date()
+ image.src = this.ImagesInfo.cloudImg+"?timeStamp="+new Date();
+ console.log(image.src);
+ image.onload=function()
+ {  
+
+   context.drawImage(image,0,0);
     
+    }
+    console.log(canvas.toDataURL());
+    this.imageUrl = canvas.toDataURL();
+  }
 
     
   }
@@ -136,29 +156,29 @@ export class EditComponent implements OnInit {
     this.router.navigate(['/confirm']);
   }
 
-  storeAsCanvas(img): any {
-    var shareContent = document.getElementById("display"); //the object dom need save
-    var width = shareContent.offsetWidth; //get dom width
-    var height = shareContent.offsetHeight; //dom height
-    var canvas = document.createElement("canvas"); //create canvas node
-    var scale = 1; //resize the picture
-    canvas.width = width * scale; // define canvas width * scale
-    canvas.height = height * scale; //define canvas height *scale
-    canvas.getContext("2d").scale(scale, scale); //get context,set scale
-    var opts = {
-      scale: scale, // add scale parameter
-      canvas: canvas, // canvas define
-      logging: true, // use log
-      width: width, //dom  original width
-      height: height //dom original height
-    };
-    html2canvas(shareContent, opts).then(canvas => {
-      this.canvasImg = canvas.toDataURL("image/png");
-    });
-    console.log(this.canvasImg)
-    // this.uploadFile(this.canvasImg);
-    // this.downloadFile(new Date(), this.canvasImg);
-  }
+  // storeAsCanvas(img): any {
+  //   var shareContent = document.getElementById("display"); //the object dom need save
+  //   var width = shareContent.offsetWidth; //get dom width
+  //   var height = shareContent.offsetHeight; //dom height
+  //   var canvas = document.createElement("canvas"); //create canvas node
+  //   var scale = 1; //resize the picture
+  //   canvas.width = width * scale; // define canvas width * scale
+  //   canvas.height = height * scale; //define canvas height *scale
+  //   canvas.getContext("2d").scale(scale, scale); //get context,set scale
+  //   var opts = {
+  //     scale: scale, // add scale parameter
+  //     canvas: canvas, // canvas define
+  //     logging: true, // use log
+  //     width: width, //dom  original width
+  //     height: height //dom original height
+  //   };
+  //   html2canvas(shareContent, opts).then(canvas => {
+  //     this.canvasImg = canvas.toDataURL("image/png");
+  //   });
+  //   console.log(this.canvasImg)
+  //   // this.uploadFile(this.canvasImg);
+  //   // this.downloadFile(new Date(), this.canvasImg);
+  // }
 
 
   grayscale(){
