@@ -173,6 +173,9 @@ canvasImg: any;
   
 
 
+    moveToPool(){
+      this.router.navigate(['/pool']);
+    }
   goToReEdit(){
   }
   goToConfirm(){
