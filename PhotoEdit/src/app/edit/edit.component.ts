@@ -194,10 +194,10 @@ export class EditComponent implements OnInit {
 
   
 
-  goToConfirm(){
+  goToReEdit(){
     this.ImagesInfo.localImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
     this.previewService.ImagesInfo=this.ImagesInfo;
-    this.router.navigate(['/confirm']);
+    this.router.navigate(['/reEdit']);
   }
 
   // storeAsCanvas(img): any {
@@ -227,36 +227,126 @@ export class EditComponent implements OnInit {
 
   grayscale(){
     this.grayscaleOn = !this.grayscaleOn;
+    this.contrastOn = false;
+    this.blurOn = false;
+    this.saturateOn = false;
+    this.brightnessOn = false;
+    this.hue_rotateOn = false;
+    this.invertOn = false;
+    this.drop_shadowOn = false;
+    this.opacityOn = false;
+    this.sepiaOn = false;
   }
 
   saturate(){
     this.saturateOn = !this.saturateOn;
+    this.grayscaleOn= false;
+    this.contrastOn = false;
+    this.blurOn = false;
+    this.brightnessOn = false;
+    this.hue_rotateOn = false;
+    this.invertOn = false;
+    this.drop_shadowOn = false;
+    this.opacityOn = false;
+    this.sepiaOn = false;
   }
 
   contrast(){
     this.contrastOn = !this.contrastOn;
+    this.grayscaleOn= false;
+    this.blurOn = false;
+    this.saturateOn = false;
+    this.brightnessOn = false;
+    this.hue_rotateOn = false;
+    this.invertOn = false;
+    this.drop_shadowOn = false;
+    this.opacityOn = false;
+    this.sepiaOn = false;
   }
 
   blur(){
     this.blurOn = !this.blurOn;
+    this.grayscaleOn= false;
+    this.contrastOn = false;
+    this.saturateOn = false;
+    this.brightnessOn = false;
+    this.hue_rotateOn = false;
+    this.invertOn = false;
+    this.drop_shadowOn = false;
+    this.opacityOn = false;
+    this.sepiaOn = false;
   }
   brightness(){
     this.brightnessOn = !this.brightnessOn;
+    this.grayscaleOn= false;
+    this.contrastOn = false;
+    this.blurOn = false;
+    this.saturateOn = false;
+    this.hue_rotateOn = false;
+    this.invertOn = false;
+    this.drop_shadowOn = false;
+    this.opacityOn = false;
+    this.sepiaOn = false;
   }
   hue_rotate(){
-    this.hue_rotateOn = !this.hue_rotateOn
+    this.hue_rotateOn = !this.hue_rotateOn;
+    this.grayscaleOn= false;
+    this.contrastOn = false;
+    this.blurOn = false;
+    this.saturateOn = false;
+    this.brightnessOn = false;
+    this.invertOn = false;
+    this.drop_shadowOn = false;
+    this.opacityOn = false;
+    this.sepiaOn = false;
   }
   invert(){
     this.invertOn = !this.invertOn;
+    this.grayscaleOn= false;
+    this.contrastOn = false;
+    this.blurOn = false;
+    this.saturateOn = false;
+    this.brightnessOn = false;
+    this.hue_rotateOn = false;
+    this.drop_shadowOn = false;
+    this.opacityOn = false;
+    this.sepiaOn = false;
   }
   drop_shadow(){
     this.drop_shadowOn = !this.drop_shadowOn;
+    this.grayscaleOn= false;
+    this.contrastOn = false;
+    this.blurOn = false;
+    this.saturateOn = false;
+    this.brightnessOn = false;
+    this.hue_rotateOn = false;
+    this.invertOn = false;
+    this.opacityOn = false;
+    this.sepiaOn = false;
   }
   opacity(){
     this.opacityOn = !this.opacityOn;
+    this.grayscaleOn= false;
+    this.contrastOn = false;
+    this.blurOn = false;
+    this.saturateOn = false;
+    this.brightnessOn = false;
+    this.hue_rotateOn = false;
+    this.invertOn = false;
+    this.drop_shadowOn = false;
+    this.sepiaOn = false;
   }
   sepia(){
     this.sepiaOn = !this.sepiaOn;
+    this.grayscaleOn= false;
+    this.contrastOn = false;
+    this.blurOn = false;
+    this.saturateOn = false;
+    this.brightnessOn = false;
+    this.hue_rotateOn = false;
+    this.invertOn = false;
+    this.drop_shadowOn = false;
+    this.opacityOn = false;
   }
 
 
