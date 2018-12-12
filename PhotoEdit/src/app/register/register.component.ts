@@ -24,7 +24,12 @@ export class RegisterComponent implements OnInit {
   }
 
   register()
-  {
+  { 
+    console.log(this.user.userName);
+    if(this.user.userName == null){
+      alert("don't leave it blank");
+    }
+    
     if(this.password == this.rePassword){
       console.log("password match");
       this.user.account = this.account;
