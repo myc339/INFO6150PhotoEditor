@@ -38,9 +38,11 @@ export class ConfirmComponent implements OnInit {
   {
    this.mails.To="";
     this.mails.title="";
+
     this.mails.content="";
   }
-  
+
+
   ngOnInit() {
     
     this.imagesInfo=this.previewService.ImagesInfo;
