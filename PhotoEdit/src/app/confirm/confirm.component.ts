@@ -53,22 +53,23 @@ export class ConfirmComponent implements OnInit {
   }
   send()
   { 
+    if(this.mails.title == ""){
+      alert("Please input your title");
+      return;
+    }
     if(!this.mails.To.match(this.pattern))
     {
       alert("invalid mail");
       return ;
     }
-    if(this.mails.title == ""){
-      alert("Please input your title");
-      return;
-    }
     if(this.path=="")
     this.path=this.header+this.uploadFile(this.canvasImg);
+    
     this.mails.content= this.path;
     console.log(this.mails.content);
     this.mailService.SendMail(this.mails).subscribe((data)=>{
     });
-
+    alert("send successfully");
   }
   download() {
     this.downloadFile(new Date(), this.canvasImg);
