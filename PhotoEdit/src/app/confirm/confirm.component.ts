@@ -2,6 +2,8 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from "@angular/core";
 import * as html2canvas from "html2canvas";
 import * as OSS from "ali-oss";
+import { ImagesInfo } from "../ImagesInfo";
+import {PreviewService} from '../preview.service';
 @Component({
   selector: "app-confirm",
   templateUrl: "./confirm.component.html",
@@ -9,16 +11,21 @@ import * as OSS from "ali-oss";
 })
 export class ConfirmComponent implements OnInit {
   canvasImg: any;
+  imgUrl = null;
   client = new OSS({
     accessKeyId: "LTAIyUXGzl6aymVM",
     accessKeySecret: "obLupIX7fk2yvVDY320QSH46CKH8JU",
     bucket: "myimagebank",
     region: "oss-us-west-1"
   });
-  constructor(private router:Router) {}
+  imagesInfo: ImagesInfo = new ImagesInfo();
+  constructor(private router:Router, private previewService: PreviewService) {}
 
   ngOnInit() {
-    this.storeAsCanvas();
+    // this.storeAsCanvas();
+    this.imagesInfo=this.previewService.ImagesInfo;
+    console.log(this.imagesInfo);
+    this.imgUrl = this.imagesInfo.localImg;
   }
   send()
   {

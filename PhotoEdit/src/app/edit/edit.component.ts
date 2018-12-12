@@ -2,6 +2,7 @@
 import { Component, OnInit,ViewChild,ElementRef, Inject } from '@angular/core';
 import {PreviewService} from '../preview.service';
 import { ImagesInfo } from "../ImagesInfo";
+
 import { LoadcloudimageService } from "../loadcloudimage.service";
 import { Subscription } from "rxjs";
 import { Router } from '@angular/router';
@@ -41,11 +42,11 @@ export class EditComponent implements OnInit {
     
   }
 
-
   ngOnInit() {
+    
     console.log(this.previewService.ImagesInfo);
     this.ImagesInfo=this.previewService.ImagesInfo;
-    this.imageUrl = "https://myimagebank.oss-us-west-1.aliyuncs.com/1.jpeg";
+    this.imageUrl = this.ImagesInfo.localImg;
     
 
     
@@ -102,19 +103,22 @@ export class EditComponent implements OnInit {
    */
   cropEvent() {
     //this.croppedImage = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
-    let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '400px',
-      data: { imageData:  this.angularCropper.cropper.getCroppedCanvas().toDataURL()}
-    });
+    // let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    //   width: '400px',
+    //   data: { imageData:  this.angularCropper.cropper.getCroppedCanvas().toDataURL()}
+    // });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    // });
+    console.log(this.angularCropper.cropper.getCroppedCanvas().toDataURL());
   }
 
   
 
   goToConfirm(){
+    this.ImagesInfo.localImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
+    this.previewService.ImagesInfo=this.ImagesInfo;
     this.router.navigate(['/confirm']);
   }
   
