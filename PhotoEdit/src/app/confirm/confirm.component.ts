@@ -58,7 +58,10 @@ export class ConfirmComponent implements OnInit {
       alert("invalid mail");
       return ;
     }
-
+    if(this.mails.title == ""){
+      alert("Please input your title");
+      return;
+    }
     if(this.path=="")
     this.path=this.header+this.uploadFile(this.canvasImg);
     this.mails.content= this.path;
