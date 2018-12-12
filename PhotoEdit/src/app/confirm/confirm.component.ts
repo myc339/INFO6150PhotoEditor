@@ -29,14 +29,14 @@ export class ConfirmComponent implements OnInit {
   });
 
   imagesInfo: ImagesInfo = new ImagesInfo();
-  constructor(private router:Router, private previewService: PreviewService,private mailService:MailserviceService) {
+  constructor(private router:Router, private previewService: PreviewService,private mailService:MailserviceService)
+  {
    this.mails.To="";
     this.mails.title="";
     this.mails.content="https://myimagebank.oss-us-west-1.aliyuncs.com/1.jpeg";}
-  }
+  
   ngOnInit() {
     // this.storeAsCanvas();
-    
     this.imagesInfo=this.previewService.ImagesInfo;
     console.log(this.imagesInfo);
     this.imgUrl = this.imagesInfo.localImg;

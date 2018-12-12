@@ -14,18 +14,14 @@
 </header>
 
 <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-  <div class="col-md-4 col-sm-6">
+  <div class="col-md-4 col-sm-6" *ngFor="let item of images">
     <div class="thumbnail">
-      <img src="" />
-      <div class="caption"><h4></h4></div>
-      <p><a class="btn btn-primary" (click)="onLoadMoreInfo()">More Info</a></p>
-      <div *ngFor="let item of images">
-        <img
+      <img
           (click)="preview($event)"
           [src]="sanitize(item.img)"
           [ngStyle]="{ width: width + 'px', height: height + 'px' }"
         />
-      </div>
+      <div class="caption"><h4></h4></div>      
     </div>
   </div>
 </div>
