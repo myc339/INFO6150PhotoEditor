@@ -27,7 +27,8 @@ const appRoutes: Routes = [
   { path: 'preview', component: PreviewComponent },
   { path: 'edit', component: EditComponent },
   { path: 'confirm', component: ConfirmComponent },
-  { path: '', component: WelcomeComponent}
+  { path: '', component: WelcomeComponent},
+  { path: 'reEdit', component: ReEditComponent}
 ];
 
 @NgModule({
