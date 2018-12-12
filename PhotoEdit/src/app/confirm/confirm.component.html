@@ -2,6 +2,16 @@
   <div id="header" class="container">
     <strong><span class="glyphicon glyphicon-envelope"></span> You Can Send Your Edit To Your Friends!</strong>
     <div class="row">
+
+      <div class="col-xs-12">
+        Title  <input type="text" [(ngModel)]="mails.title"/> 
+        To <input type="text" 
+        [(ngModel)]="mails.To"
+    />
+      
+        <button id="send" (click)="send()">
+          <span class="glyphicon glyphicon-send"></span> Click To Send
+
       <div class="col-xs-4">
         <p>Title</p><input type="text" [(ngModel)]="mails.title" />
       </div>
@@ -23,6 +33,7 @@
         </button>
         <button id="share" (click)="upload()">
           <span class="glyphicon glyphicon-cloud-upload"></span> Share With Others
+
         </button>
       </div>
     </div>
@@ -42,10 +53,16 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="thumbnail">
-      <img class="img-responsive" [src]="imgUrl">
+
+<div class="container"  >
+  <div class="row" >
+    <div class="thumbnail" >
+       
+      <img class="img-responsive" [src]="imgUrl" >
+   
     </div>
   </div>
 </div>
+
+
+

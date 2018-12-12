@@ -8,6 +8,8 @@ import { MailserviceService } from '../mailservice.service';
 
 import { ImagesInfo } from "../ImagesInfo";
 import {PreviewService} from '../preview.service';
+import { ImagesService } from '../images.service';
+import { Images } from '../Images';
 
 @Component({
   selector: "app-confirm",
@@ -15,12 +17,14 @@ import {PreviewService} from '../preview.service';
   styleUrls: ["./confirm.component.scss"]
 })
 export class ConfirmComponent implements OnInit {
-  canvasImg: any;
-
+  
+   pattern:any=/^[0-9A-Za-z]+@[0-9A-Za-z_]+(\.[a-zA-Z0-9_-]+)+$/g;
   mails:Mails=new Mails();
-
+  canvasImg:any;
+  header:string="https://myimagebank.oss-us-west-1.aliyuncs.com/";
   imgUrl = null;
-
+  path:string="";
+  Images:Images =new Images();
   client = new OSS({
     accessKeyId: "LTAIyUXGzl6aymVM",
     accessKeySecret: "obLupIX7fk2yvVDY320QSH46CKH8JU",
@@ -29,21 +33,36 @@ export class ConfirmComponent implements OnInit {
   });
 
   imagesInfo: ImagesInfo = new ImagesInfo();
-  constructor(private router:Router, private previewService: PreviewService,private mailService:MailserviceService) {
+  constructor(private router:Router, private previewService: PreviewService,
+    private mailService:MailserviceService,private imageService:ImagesService)
+  {
    this.mails.To="";
     this.mails.title="";
-    this.mails.content="https://myimagebank.oss-us-west-1.aliyuncs.com/1.jpeg";
+    this.mails.content="";}
+  
+
   }
+
   ngOnInit() {
-    // this.storeAsCanvas();
     
     this.imagesInfo=this.previewService.ImagesInfo;
     console.log(this.imagesInfo);
-    this.imgUrl = this.imagesInfo.localImg;
-
+    this.imgUrl=this.imagesInfo.localImg;
+    this.canvasImg = this.imagesInfo.localImg;
+ 
   }
   send()
-  {
+  { 
+    if(!this.mails.To.match(this.pattern))
+    {
+      alert("invalid mail");
+      return ;
+    }
+
+    if(this.path=="")
+    this.path=this.header+this.uploadFile(this.canvasImg);
+    this.mails.content= this.path;
+    console.log(this.mails.content);
     this.mailService.SendMail(this.mails).subscribe((data)=>{
     });
 
@@ -52,44 +71,48 @@ export class ConfirmComponent implements OnInit {
     this.downloadFile(new Date(), this.canvasImg);
   }
   upload() {
-    this.uploadFile(this.canvasImg);
+    if(this.path=="")
+    this.path=this.header+this.uploadFile(this.canvasImg);
+    this.Images.img=this.path
+    this.imageService.UploadNewImage(this.Images).subscribe(()=>{
+
+    })
   }
 
   uploadFile(file) {
-    let suffix = ".jpeg";
+    let suffix = ".png";
     let obj = new Date().getTime();
     let storeAs = obj + suffix;
+    console.log(storeAs);
+   file= this.dataURItoFile(file,obj);
     this.client
       .multipartUpload(storeAs, file)
-      .then(result => {})
-      .catch(err => {});
+      .then(result => {
+        console.log(result);
+      }
+        )
+      .catch(err => {
+        console.log(err);
+      });
+      return storeAs;
+  }
+   dataURItoFile(dataURI, fileName) {
+    
+    var byteString = atob(dataURI.split(',')[1]);
+   
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+     ia[i] = byteString.charCodeAt(i);
+    }
+    // return new Blob([ab], { type: 'image/jpeg' });
+    return new File([ia], fileName, {type: 'image/jpeg', lastModified: Date.now()})
   }
 
-  storeAsCanvas(): any {
-    var shareContent = document.getElementById("display"); //the object dom need save
-    var width = shareContent.offsetWidth; //get dom width
-    var height = shareContent.offsetHeight; //dom height
-    var canvas = document.createElement("canvas"); //create canvas node
-    var scale = 1; //resize the picture
-    canvas.width = width * scale; // define canvas width * scale
-    canvas.height = height * scale; //define canvas height *scale
-    canvas.getContext("2d").scale(scale, scale); //get context,set scale
-    var opts = {
-      scale: scale, // add scale parameter
-      canvas: canvas, // canvas define
-      logging: true, // use log
-      width: width, //dom  original width
-      height: height //dom original height
-    };
-    html2canvas(shareContent, opts).then(canvas => {
-      this.canvasImg = canvas.toDataURL("image/jpeg");
-    });
-    // this.uploadFile(this.canvasImg);
-    // this.downloadFile(new Date(), this.canvasImg);
-  }
+  
 
   downloadFile(filename, content) {
-    console.log(content);
+    // console.log(content);
     var base64Img = content;
     var oA = document.createElement("a");
     oA.href = base64Img;

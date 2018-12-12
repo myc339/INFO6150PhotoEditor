@@ -2,7 +2,7 @@
 import { Component, OnInit,ViewChild,ElementRef, Inject } from '@angular/core';
 import {PreviewService} from '../preview.service';
 import { ImagesInfo } from "../ImagesInfo";
-
+import * as html2canvas from "html2canvas";
 import { LoadcloudimageService } from "../loadcloudimage.service";
 import { Subscription } from "rxjs";
 import { Router } from '@angular/router';
@@ -35,6 +35,7 @@ export class EditComponent implements OnInit {
   ImagesInfo: ImagesInfo = new ImagesInfo();
   private paramsSubscription: Subscription;
   Img: any;
+
   left:Number=20;
   top:Number=20;
   grayscaleOn:boolean = false;
@@ -48,7 +49,9 @@ export class EditComponent implements OnInit {
   opacityOn:boolean = false;
   sepiaOn:boolean = false;
 
+
   
+  canvasImg: any;
   constructor(private previewService: PreviewService,private router:Router, public dialog: MatDialog) {
     
   }
@@ -133,6 +136,31 @@ export class EditComponent implements OnInit {
     this.router.navigate(['/confirm']);
   }
 
+  storeAsCanvas(img): any {
+    var shareContent = document.getElementById("display"); //the object dom need save
+    var width = shareContent.offsetWidth; //get dom width
+    var height = shareContent.offsetHeight; //dom height
+    var canvas = document.createElement("canvas"); //create canvas node
+    var scale = 1; //resize the picture
+    canvas.width = width * scale; // define canvas width * scale
+    canvas.height = height * scale; //define canvas height *scale
+    canvas.getContext("2d").scale(scale, scale); //get context,set scale
+    var opts = {
+      scale: scale, // add scale parameter
+      canvas: canvas, // canvas define
+      logging: true, // use log
+      width: width, //dom  original width
+      height: height //dom original height
+    };
+    html2canvas(shareContent, opts).then(canvas => {
+      this.canvasImg = canvas.toDataURL("image/png");
+    });
+    console.log(this.canvasImg)
+    // this.uploadFile(this.canvasImg);
+    // this.downloadFile(new Date(), this.canvasImg);
+  }
+
+
   grayscale(){
     this.grayscaleOn = !this.grayscaleOn;
   }
@@ -166,6 +194,7 @@ export class EditComponent implements OnInit {
   sepia(){
     this.sepiaOn = !this.sepiaOn;
   }
+
 
 }
 @Component({
