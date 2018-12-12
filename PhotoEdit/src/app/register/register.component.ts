@@ -26,11 +26,13 @@ export class RegisterComponent implements OnInit {
   register()
   { 
     console.log(this.user.userName);
-    if(this.user.userName == null){
-      alert("don't leave it blank");
+    if(this.account == null){
+      alert("don't leave account it blank");
     }
-    
-    if(this.password == this.rePassword){
+    else if(this.user.userName == null){
+      alert("don't leave userName it blank");
+    }
+    else if(this.password != null && this.password == this.rePassword){
       console.log("password match");
       this.user.account = this.account;
       this.user.password = this.password;
@@ -39,6 +41,9 @@ export class RegisterComponent implements OnInit {
 
       });
       this.router.navigate(['/']);
+    }
+    else{
+      alert("invalid password");
     }
     
   }
