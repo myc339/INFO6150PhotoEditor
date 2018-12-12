@@ -35,6 +35,21 @@ export class EditComponent implements OnInit {
   ImagesInfo: ImagesInfo = new ImagesInfo();
   private paramsSubscription: Subscription;
   Img: any;
+
+  left:Number=20;
+  top:Number=20;
+  grayscaleOn:boolean = false;
+  contrastOn:boolean = false;
+  blurOn:boolean = false;
+  saturateOn:boolean = false;
+  brightnessOn:boolean = false;
+  hue_rotateOn:boolean = false;
+  invertOn:boolean = false;
+  drop_shadowOn:boolean = false;
+  opacityOn:boolean = false;
+  sepiaOn:boolean = false;
+
+
   
   canvasImg: any;
   constructor(private previewService: PreviewService,private router:Router, public dialog: MatDialog) {
@@ -120,6 +135,7 @@ export class EditComponent implements OnInit {
     this.previewService.ImagesInfo=this.ImagesInfo;
     this.router.navigate(['/confirm']);
   }
+
   storeAsCanvas(img): any {
     var shareContent = document.getElementById("display"); //the object dom need save
     var width = shareContent.offsetWidth; //get dom width
@@ -143,6 +159,43 @@ export class EditComponent implements OnInit {
     // this.uploadFile(this.canvasImg);
     // this.downloadFile(new Date(), this.canvasImg);
   }
+
+
+  grayscale(){
+    this.grayscaleOn = !this.grayscaleOn;
+  }
+
+  saturate(){
+    this.saturateOn = !this.saturateOn;
+  }
+
+  contrast(){
+    this.contrastOn = !this.contrastOn;
+  }
+
+  blur(){
+    this.blurOn = !this.blurOn;
+  }
+  brightness(){
+    this.brightnessOn = !this.brightnessOn;
+  }
+  hue_rotate(){
+    this.hue_rotateOn = !this.hue_rotateOn
+  }
+  invert(){
+    this.invertOn = !this.invertOn;
+  }
+  drop_shadow(){
+    this.drop_shadowOn = !this.drop_shadowOn;
+  }
+  opacity(){
+    this.opacityOn = !this.opacityOn;
+  }
+  sepia(){
+    this.sepiaOn = !this.sepiaOn;
+  }
+
+
 }
 @Component({
   selector: 'dialog-overview-example-dialog',
