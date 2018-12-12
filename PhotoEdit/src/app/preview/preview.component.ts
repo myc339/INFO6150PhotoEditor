@@ -29,35 +29,83 @@ export class PreviewComponent implements OnInit, OnDestroy {
     //    //do whatever you need here, with the base64 data
     // })
   }
+  
   confirm()
-  {
+  {       //get blob data from cloud server 
+    var request = new XMLHttpRequest();
+   let myurl='https://myimagebank.oss-us-west-1.aliyuncs.com/';
+request.open('GET', myurl+'1.jpeg', true);
+request.responseType = 'blob';
+request.onload = function() {
+    var reader = new FileReader();
+    reader.readAsDataURL(request.response);
+    reader.onload = (e) => {
+      
+        console.log('DataURL:', reader.result);
+      
+    };
+    
+};
+request.send();
+    //console.log(this.previewService.ImagesInfo.localImg)
+    if(this.previewService.ImagesInfo.localImg===undefined&&
+      this.previewService.ImagesInfo.cloudImg!==undefined)
+      { 
+        
+      }
+
     this.previewService.ImagesInfo=this.ImagesInfo;
   }
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
   }
- 
-
-  convertToDataURLviaCanvas(url, outputFormat){
-    return new Promise( (resolve, reject) => {
-      let img = new Image();
-      img.crossOrigin = 'Anonymous';
-      img.onload = function(){
-        let canvas = <HTMLCanvasElement> document.createElement('canvas'),
-        ctx = canvas.getContext('2d'),
-        dataURL;
-        canvas.height = img.height;
-        canvas.width = img.width;
-        ctx.drawImage(img, 0, 0);
-        dataURL = canvas.toDataURL(outputFormat);
-        //callback(dataURL);
-        canvas = null;
-        resolve(dataURL); 
-        console.log(dataURL);
-      };
-      img.src = url;
-    });
+  downloadFile(filename, content) {
+    // console.log(content);
+    var base64Img = content;
+    var oA = document.createElement("a");
+    oA.href = window.URL.createObjectURL(content);
+    oA.download = filename;
+    var event = document.createEvent("MouseEvents");
+    event.initMouseEvent(
+      "click",
+      true,
+      false,
+      window,
+      0,
+      0,
+      0,
+      0,
+      0,
+      false,
+      false,
+      false,
+      false,
+      0,
+      null
+    );
+    oA.dispatchEvent(event);
   }
+//   getBlob(url) {
+//     return new Promise(resolve => {
+//         const xhr = new XMLHttpRequest();
+
+//         xhr.open('GET', url, true);
+//         xhr.responseType = 'blob';
+//         xhr.onload = () => {
+//             if (xhr.status === 200) {
+//                 resolve(xhr.response);
+//             }
+//         };
+
+//         xhr.send();
+//     });
+// }
+// download(url, filename) {
+//   this.getBlob(url).then(blob => {
+//     this.downloadFile(filename,blob);
+//   });
+// }
+  
   sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
