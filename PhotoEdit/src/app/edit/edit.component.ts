@@ -66,25 +66,69 @@ export class EditComponent implements OnInit {
     }
     if(this.ImagesInfo.cloudImg!==undefined)
     {
- var canvas=document.createElement("canvas");
-let context = canvas.getContext('2d');
- let image =new Image();
- image.crossOrigin="Anonymous";
-//  +"?timeStamp="+new Date()
- image.src = this.ImagesInfo.cloudImg+"?timeStamp="+new Date();
- console.log(image.src);
- image.onload=function()
- {  
+      var imgLink = this.ImagesInfo.cloudImg+"?v="+Math.random();
+    this.imageUrl=  this.getBase64Image(imgLink)
+      console.log(this.imageUrl);
+//  var canvas=document.createElement("canvas");
+// let context = canvas.getContext('2d');
+//  let image =new Image();
+//  image.crossOrigin="Anonymous";
+// //  +"?timeStamp="+new Date()
+//  image.src = ;
+//  console.log(image.src);
+//  image.onload=function()
+//  {  
 
-   context.drawImage(image,0,0);
+//    context.drawImage(image,0,0);
     
+//     }
+//     console.log(canvas.toDataURL());
+//     this.imageUrl = canvas.toDataURL();
+//   }
+
+      }
+  }
+  getBase64Image(imgLink) {
+    var tempImage = new Image();
+    var dataURL;
+    tempImage.crossOrigin = "*";
+    tempImage.onload = function(){
+      var canvas = document.createElement("canvas");
+      canvas.width = tempImage.width;
+      canvas.height = tempImage.height;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(tempImage, 0, 0, tempImage.width, tempImage.height);
+      var ext = tempImage.src.substring(tempImage.src.lastIndexOf(".")+1).toLowerCase();
+       dataURL = canvas.toDataURL("image/"+ext);
+      var img=document.createElement("img");
+ 
     }
-    console.log(canvas.toDataURL());
-    this.imageUrl = canvas.toDataURL();
-  }
+    tempImage.src = imgLink;
+   
+}
+//  getBase64Image(img) {
+//   var canvas = document.createElement("canvas");
+//   canvas.width = img.width;
+//   canvas.height = img.height;
+//   var ctx = canvas.getContext("2d");
+//   ctx.drawImage(img, 0, 0, img.width, img.height);
+//   var dataURL = canvas.toDataURL("image/png");  // 可选其他值 image/jpeg
+//   return dataURL;
+// }
 
-    
-  }
+//  createdImage(src, cb) {
+//   var image = new Image();
+//   image.src = src + '?v=' + Math.random();
+//   image.crossOrigin = "anonymous";  
+//   image.onload = function(){
+//       var base64 = getBase64Image(image);
+//       cb && cb(base64);
+//   }
+// }
+
+
+
+
   reset() {
     this.imageUrl = null;
     this.croppedImage = null;
