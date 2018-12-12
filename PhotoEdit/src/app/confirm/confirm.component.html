@@ -3,8 +3,8 @@
     <strong><span class="glyphicon glyphicon-envelope"></span> You Can Send Your Edit To Your Friends!</strong>
     <div class="row">
       <div class="col-xs-12">
-        Title <input type="text" [(ngModel)]="mails.title" placeholder="Title"/>
-        To <input type="text" [(ngModel)]="mails.To" placeholder="To"/>
+        Title <input type="text" [(ngModel)]="mails.title" placeholder="Title" />
+        To <input type="text" [(ngModel)]="mails.To" placeholder="To" />
 
         <button id="send" (click)="send()">
           <span class="glyphicon glyphicon-send"></span> Click To Send
@@ -12,33 +12,20 @@
 
       </div>
     </div>
+
+
+
+    <div id="next" class="col-xs-12">
+      <br>
+      <strong>You can also: </strong>
+      <button id="save" (click)="download()">
+        <span class="glyphicon glyphicon-cloud-download"></span> Save To My Computer
+      </button>
+      <button id="share" (click)="upload()">
+        <span class="glyphicon glyphicon-cloud-upload"></span> Share With Others
+      </button>
+    </div>
   </div>
-        <div class="col-xs-4">
-
-          <p>Title</p><input type="text" [(ngModel)]="mails.title" />
-        </div>
-        <div class="col-xs-4">
-          <p>Address</p><input type="text" [(ngModel)]="mails.To" />
-        </div>
-        <div id="next" class="col-xs-4">
-          <p></p>
-          <button id="send" (click)="send()">
-            <span class="glyphicon glyphicon-send"></span> Click To Send
-          </button>
-
-        </div>
-
-
-      <div id="next" class="col-xs-12">
-        <br>
-        <strong>You can also: </strong>
-        <button id="save" (click)="download()">
-          <span class="glyphicon glyphicon-cloud-download"></span> Save To My Computer
-        </button>
-        <button id="share" (click)="upload()">
-          <span class="glyphicon glyphicon-cloud-upload"></span> Share With Others
-        </button>
-      </div>
 
 </header>
 
