@@ -4,11 +4,11 @@ import {PreviewService} from '../preview.service';
 import { ImagesInfo } from "../ImagesInfo";
 import * as html2canvas from "html2canvas";
 import { LoadcloudimageService } from "../loadcloudimage.service";
-import { Subscription } from "rxjs";
+import { Subscription, Observer } from "rxjs";
 import { Router } from '@angular/router';
 import { AngularCropperjsComponent } from 'angular-cropperjs';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
+import {Subject,Observable} from 'rxjs';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -67,7 +67,12 @@ export class EditComponent implements OnInit {
     if(this.ImagesInfo.cloudImg!==undefined)
     {
       var imgLink = this.ImagesInfo.cloudImg+"?v="+Math.random();
-    this.imageUrl=  this.getBase64Image(imgLink)
+   this.getBase64Image(imgLink).subscribe(
+      (value)=>{
+        if(value!==undefined)
+        this.imageUrl= value;
+      }
+    )
       console.log(this.imageUrl);
 //  var canvas=document.createElement("canvas");
 // let context = canvas.getContext('2d');
@@ -88,7 +93,8 @@ export class EditComponent implements OnInit {
 
       }
   }
-  getBase64Image(imgLink) {
+  getBase64Image(imgLink):Observable<any> {
+    let subj = new Subject();
     var tempImage = new Image();
     var dataURL;
     tempImage.crossOrigin = "*";
@@ -99,12 +105,13 @@ export class EditComponent implements OnInit {
       var ctx = canvas.getContext("2d");
       ctx.drawImage(tempImage, 0, 0, tempImage.width, tempImage.height);
       var ext = tempImage.src.substring(tempImage.src.lastIndexOf(".")+1).toLowerCase();
-       dataURL = canvas.toDataURL("image/"+ext);
+      var dataURL = canvas.toDataURL("image/"+ext);
       var img=document.createElement("img");
- 
+      subj.next(dataURL);
     }
-    tempImage.src = imgLink;
    
+    tempImage.src = imgLink;
+    return subj.asObservable();
 }
 //  getBase64Image(img) {
 //   var canvas = document.createElement("canvas");

@@ -18,7 +18,7 @@ import { Images } from '../Images';
 })
 export class ConfirmComponent implements OnInit {
   
-   pattern:any=/^[0-9A-Za-z]+@[0-9A-Za-z_]+(\.[a-zA-Z0-9_-]+)+$/g;
+   pattern:any=/^[0-9A-Za-z]+(\.[a-zA-Z0-9_-]+)@[0-9A-Za-z_]+(\.[a-zA-Z0-9_-]+)+$/g;
   mails:Mails=new Mails();
   canvasImg:any;
   header:string="https://myimagebank.oss-us-west-1.aliyuncs.com/";
