@@ -59,38 +59,24 @@ export class EditComponent implements OnInit {
     
     console.log(this.previewService.ImagesInfo);
     this.ImagesInfo=this.previewService.ImagesInfo;
-    if(this.ImagesInfo.localImg!==undefined)
+    if(this.ImagesInfo.localImg!==undefined&&this.ImagesInfo.localImg!==null)
     {
       this.imageUrl = this.ImagesInfo.localImg;
       console.log(  this.imageUrl);
     }
-    if(this.ImagesInfo.cloudImg!==undefined)
+    if(this.ImagesInfo.cloudImg!==undefined&&this.ImagesInfo.cloudImg!==null)
     {
-      var imgLink = this.ImagesInfo.cloudImg+"?v="+Math.random();
+      var imgLink = this.ImagesInfo.cloudImg+"?timestamp="+new Date();
    this.getBase64Image(imgLink).subscribe(
       (value)=>{
-        if(value!==undefined)
-        this.imageUrl= value;
+        if(value!==undefined&&value!==null)
+        {
+          console.log(value);
+          this.imageUrl= value;
+         
+        }
       }
     )
-      console.log(this.imageUrl);
-//  var canvas=document.createElement("canvas");
-// let context = canvas.getContext('2d');
-//  let image =new Image();
-//  image.crossOrigin="Anonymous";
-// //  +"?timeStamp="+new Date()
-//  image.src = ;
-//  console.log(image.src);
-//  image.onload=function()
-//  {  
-
-//    context.drawImage(image,0,0);
-    
-//     }
-//     console.log(canvas.toDataURL());
-//     this.imageUrl = canvas.toDataURL();
-//   }
-
       }
   }
   getBase64Image(imgLink):Observable<any> {
@@ -113,29 +99,6 @@ export class EditComponent implements OnInit {
     tempImage.src = imgLink;
     return subj.asObservable();
 }
-//  getBase64Image(img) {
-//   var canvas = document.createElement("canvas");
-//   canvas.width = img.width;
-//   canvas.height = img.height;
-//   var ctx = canvas.getContext("2d");
-//   ctx.drawImage(img, 0, 0, img.width, img.height);
-//   var dataURL = canvas.toDataURL("image/png");  // 可选其他值 image/jpeg
-//   return dataURL;
-// }
-
-//  createdImage(src, cb) {
-//   var image = new Image();
-//   image.src = src + '?v=' + Math.random();
-//   image.crossOrigin = "anonymous";  
-//   image.onload = function(){
-//       var base64 = getBase64Image(image);
-//       cb && cb(base64);
-//   }
-// }
-
-
-
-
   reset() {
     this.imageUrl = null;
     this.croppedImage = null;
@@ -202,7 +165,7 @@ export class EditComponent implements OnInit {
   
 
   goToConfirm(){
-    this.ImagesInfo.localImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
+    this.ImagesInfo.tempImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
     this.previewService.ImagesInfo=this.ImagesInfo;
     this.router.navigate(['/confirm']);
   }
