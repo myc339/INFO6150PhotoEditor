@@ -172,8 +172,9 @@ canvasImg: any;
     //console.log(this.angularCropper.cropper.getCroppedCanvas().toDataURL());
   
 
-  goToReEdit(){}
 
+  goToReEdit(){
+  }
   goToConfirm(){
     this.ImagesInfo.tempImg = this.angularCropper.cropper.getCroppedCanvas().toDataURL();
 

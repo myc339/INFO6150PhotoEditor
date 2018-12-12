@@ -97,9 +97,10 @@ export class ConfirmComponent implements OnInit {
     let storeAs = obj + suffix;
     console.log(storeAs);
     console.log(obj);
-   file= this.b64toBlob(file);
+   file= this.dataURItoFile(file,storeAs);
+   this.client.initiateMultipartUpload();
     this.client
-      .multipartUpload(storeAs, file)
+      .uploadPart(storeAs, file)
       .then(result => {
         console.log(result);
        
@@ -109,42 +110,44 @@ export class ConfirmComponent implements OnInit {
         console.log(err);
       });
       return storeAs;
+      this.client.completeMultipartUpload();
   }
+ 
 
-   //dataURItoFile(dataURI, fileName) {
+   dataURItoFile(dataURI, fileName) {
 
 
     
-  //   var byteString = atob(dataURI.split(',')[1]);
+    var byteString = atob(dataURI.split(',')[1]);
    
-  //   var ab = new ArrayBuffer(byteString.length);
-  //   var ia = new Uint8Array(ab);
-  //   for (var i = 0; i < byteString.length; i++) {
-  //    ia[i] = byteString.charCodeAt(i);
-  //   }
-  //   // return new Blob([ab], { type: 'image/jpeg' });
-  //   return new File([ia], fileName, {type: 'image/jpeg', lastModified: Date.now()})
-  // }
-  b64toBlob(b64Data, contentType='', sliceSize=512) {
-    const byteCharacters = atob(b64Data);
-    const byteArrays = [];
-
-    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-        const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-        const byteNumbers = new Array(slice.length);
-        for (let i = 0; i < slice.length; i++) {
-            byteNumbers[i] = slice.charCodeAt(i);
-        }
-
-        const byteArray = new Uint8Array(byteNumbers);
-
-        byteArrays.push(byteArray);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+     ia[i] = byteString.charCodeAt(i);
     }
+    // return new Blob([ab], { type: 'image/jpeg' });
+    return new File([ia], fileName, {type: 'image/jpeg', lastModified: Date.now()})
+  }
+//   b64toBlob(b64Data, contentType='', sliceSize=512) {
+//     const byteCharacters = atob(b64Data);
+//     const byteArrays = [];
 
-  const blob = new Blob(byteArrays, {type: contentType});
-  return blob;
-}
+//     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+//         const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+//         const byteNumbers = new Array(slice.length);
+//         for (let i = 0; i < slice.length; i++) {
+//             byteNumbers[i] = slice.charCodeAt(i);
+//         }
+
+//         const byteArray = new Uint8Array(byteNumbers);
+
+//         byteArrays.push(byteArray);
+//     }
+
+//   const blob = new Blob(byteArrays, {type: contentType});
+//   return blob;
+// }
 
   
   //download file
