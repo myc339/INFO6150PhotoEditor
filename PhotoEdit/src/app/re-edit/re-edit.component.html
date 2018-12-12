@@ -4,7 +4,7 @@
     <div class=" btn-group col-xs-3">
       <button type="button" class="btn btn-default dropdown-toggle" (click)="addText()">
         <span class="glyphicon glyphicon-pencil"></span> AddText </button>
-        <input type="text" [(ngModel)]="text">
+      <input type="text" [(ngModel)]="text">
     </div>
 
     <div class="btn-group col-xs-3">
@@ -13,19 +13,21 @@
         <span class="glyphicon glyphicon-tasks"></span> Img Quality <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-          <li><a (click)="grayscale()"><span class="glyphicon glyphicon-random"></span>Grayscale</a></li>
-          <li><a (click)="opacity()"><span class="glyphicon glyphicon-eye-open"></span> Opacity</a></li>
-          <li><a (click)="hue_rotate()"><span class="glyphicon glyphicon-refresh"></span>Hue-rotate</a></li>
+        <li><a (click)="grayscale()"><span class="glyphicon glyphicon-random"></span>Grayscale</a></li>
+        <li><a (click)="opacity()"><span class="glyphicon glyphicon-eye-open"></span> Opacity</a></li>
+        <li><a (click)="hue_rotate()"><span class="glyphicon glyphicon-refresh"></span>Hue-rotate</a></li>
       </ul>
     </div>
 
-    <div class="col-xs-3 text-right">
-      <button  type="button" class="btn btn-default dropdown-toggle" (click)="goToConfirm()"><span class="glyphicon glyphicon-ok"></span>
+    <div class="col-xs-6 text-right">
+      <button type="button" class="btn btn-default dropdown-toggle" (click)="goToConfirm()"><span class="glyphicon glyphicon-ok"></span>
         Confirm</button>
+      <button type="button" class="btn btn-default dropdown-toggle" (click)="moveToPool()"><span class="glyphicon glyphicon-remove"></span>
+        Remove This Picture</button>
     </div>
   </div>
 
-  
+
 </div>
 
 

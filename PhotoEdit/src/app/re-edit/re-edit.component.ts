@@ -83,16 +83,16 @@ export class ReEditComponent implements OnInit {
   addText() {
     this.ctx.clearRect(0, 0, this.newImage.width, this.newImage.height);
     this.ctx.putImageData(this.pixels, 0, 0);
-   // this.ctx.font = "30px Arial";
-    this.ctx.font="30px Verdana";
-// Create gradient
-var gradient=this.ctx.createLinearGradient(0,0,this.newCanvas.width,0);
-gradient.addColorStop("0","magenta");
-gradient.addColorStop("0.5","yellow");
-gradient.addColorStop("1.0","red");
-// Fill with gradient
-this.ctx.strokeStyle=gradient;
-this.ctx.strokeText(this.text,200,200);
+    // this.ctx.font = "30px Arial";
+    this.ctx.font = "30px Verdana";
+    // Create gradient
+    var gradient = this.ctx.createLinearGradient(0, 0, this.newCanvas.width, 0);
+    gradient.addColorStop("0", "magenta");
+    gradient.addColorStop("0.5", "yellow");
+    gradient.addColorStop("1.0", "red");
+    // Fill with gradient
+    this.ctx.strokeStyle = gradient;
+    this.ctx.strokeText(this.text, 200, 200);
     //this.ctx.fillText(this.text, 200, 200);
   }
   //photo edit function
@@ -104,12 +104,12 @@ this.ctx.strokeText(this.text,200,200);
     console.log("in getEl" + this.newImage);
     this.renderer2.setStyle(this.newImage, "display", "none");/////////////////////
     console.log(this.newImage);
-    
-      this.newImage.src = this.previewService.ImagesInfo.tempImg;
-    
+
+    this.newImage.src = this.previewService.ImagesInfo.tempImg;
+
 
     console.log(this.newImage.src);
-    
+
 
     this.editStyle();
 
@@ -123,16 +123,16 @@ this.ctx.strokeText(this.text,200,200);
       // this.tempWidth = window.getComputedStyle(this.el.nativeElement.querySelector(".newImage")).width;
       // this.tempHeight = window.getComputedStyle(this.el.nativeElement.querySelector(".newImage")).height;
       //console.log(this.tempHeight+"and"+this.tempWidth);
-      this.ctx.drawImage(this.newImage, 0, 0,this.newImage.width,this.newImage.height);
-      this.pixels = this.ctx.getImageData(0, 0,this.newImage.width,this.newImage.height);
+      this.ctx.drawImage(this.newImage, 0, 0, this.newImage.width, this.newImage.height);
+      this.pixels = this.ctx.getImageData(0, 0, this.newImage.width, this.newImage.height);
       this.pixeldata = this.pixels.data;
-      if(!this.imageOn){
-        this.pixelsNoText = this.ctx.getImageData(0, 0,this.newImage.width,this.newImage.height);
+      if (!this.imageOn) {
+        this.pixelsNoText = this.ctx.getImageData(0, 0, this.newImage.width, this.newImage.height);
         this.imageOn = true;
       }
-      
+
     }
-    
+
   }
 
   saveAsPNG(canvas) {
@@ -148,27 +148,30 @@ this.ctx.strokeText(this.text,200,200);
 
   }
 
+  moveToPool() {
+    this.router.navigate(['/pool']);
+  }
 
   grayscale() {
     this.grayscaleOn = !this.grayscaleOn;
-    
 
-    if(this.grayscaleOn){
+
+    if (this.grayscaleOn) {
       for (var i = 0, len = this.pixeldata.length; i < len; i += 4) {
-      var gray = parseInt(this.pixels.data[i]) * 0.9 + parseInt(this.pixels.data[i + 1]) * 0.9 + parseInt(this.pixels.data[i + 2]) * 0.11;
-      this.pixels.data[i] = gray;
-      this.pixels.data[i + 1] = gray;
-      this.pixels.data[i + 2] = gray;
+        var gray = parseInt(this.pixels.data[i]) * 0.9 + parseInt(this.pixels.data[i + 1]) * 0.9 + parseInt(this.pixels.data[i + 2]) * 0.11;
+        this.pixels.data[i] = gray;
+        this.pixels.data[i + 1] = gray;
+        this.pixels.data[i + 2] = gray;
+      }
+      this.ctx.clearRect(0, 0, this.newImage.width, this.newImage.height);
+      this.ctx.putImageData(this.pixels, 0, 0);
     }
-    this.ctx.clearRect(0, 0, this.newImage.width, this.newImage.height);
-    this.ctx.putImageData(this.pixels, 0, 0);
-    }
-    else{
+    else {
       this.pixels = this.pixelsNoText;
       this.ctx.clearRect(0, 0, this.newImage.width, this.newImage.height);
       this.ctx.putImageData(this.pixelsNoText, 0, 0);
     }
-    
+
 
     console.log(this.ctx);
     console.log(this.ctx.font);
@@ -178,40 +181,39 @@ this.ctx.strokeText(this.text,200,200);
 
   hue_rotate() {
     this.hue_rotateOn = !this.hue_rotateOn;
-    if(this.hue_rotateOn){
-      for (var i=0;i<this.pixels.data.length;i+=4)
-      {
-        this.pixels.data[i]=255-this.pixels.data[i];
-        this.pixels.data[i+1]=255-this.pixels.data[i+1];
-        this.pixels.data[i+2]=255-this.pixels.data[i+2];
-        this.pixels.data[i+3]=255;
+    if (this.hue_rotateOn) {
+      for (var i = 0; i < this.pixels.data.length; i += 4) {
+        this.pixels.data[i] = 255 - this.pixels.data[i];
+        this.pixels.data[i + 1] = 255 - this.pixels.data[i + 1];
+        this.pixels.data[i + 2] = 255 - this.pixels.data[i + 2];
+        this.pixels.data[i + 3] = 255;
       }
-      this.ctx.putImageData(this.pixels,0,0);
+      this.ctx.putImageData(this.pixels, 0, 0);
     }
-    else{
+    else {
       this.pixels = this.pixelsNoText;
       this.ctx.clearRect(0, 0, this.newCanvas.width, this.newCanvas.height);
-      this.ctx.putImageData(this.pixelsNoText,0,0);
+      this.ctx.putImageData(this.pixelsNoText, 0, 0);
     }
-    
+
   }
-  
+
   opacity() {
     this.opacityOn = !this.opacityOn;
 
-    if(this.opacityOn){
+    if (this.opacityOn) {
       for (var i = 0, len = this.pixeldata.length; i < len; i += 4) {
-      
+
         this.pixels.data[i + 3] = 125;
       }
       this.ctx.clearRect(0, 0, this.newCanvas.width, this.newCanvas.height);
       this.ctx.putImageData(this.pixels, 0, 0);
     }
-    else{
+    else {
       this.pixels = this.pixelsNoText;
       this.ctx.clearRect(0, 0, this.newCanvas.width, this.newCanvas.height);
       this.ctx.putImageData(this.pixelsNoText, 0, 0);
     }
   }
-  
+
 }
