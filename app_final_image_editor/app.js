@@ -9,7 +9,9 @@ require("./config/db");
 const app = express();
 var originsWhitelist = [
   'http://localhost:4200',      //this is my front-end url for development
-   'http://localhost:3301'
+   'http://localhost:3301',
+'https://myimagebank.oss-us-west-1.aliyuncs.com'
+
 ];
 var corsOptions = {
   origin: function(origin, callback){
@@ -37,8 +39,8 @@ let mailOptions = {
         html: '<h1>Hello world</h2><p><img src = "cid:0011"></p>', // html类型的邮件正文
         attachments: [
         {
-        	filename: 'test.jpg',//附件名称
-            path: '',//附件的位置
+        	filename: 'Image.jpg',//附件名称
+             path: '',//附件的位置
             cid: '0011' //为附件添加一个引用名称
         }
         ]
@@ -77,7 +79,7 @@ app.options('/sendmail', function (req, res) {
   res.sendStatus(200);
 });
 app.post('/sendmail', function (req, res) {
-
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200'); // Change this to your Angular 2 port number
   res.setHeader('Access-Control-Request-Method', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST');
@@ -85,7 +87,12 @@ app.post('/sendmail', function (req, res) {
   //mailOptions.to=req.body.to;
   mailOptions.to=req.body.To;
   mailOptions.subject=req.body.title;
-  mailOptions.attachments.path=req.body.content;
+  //mailOptions.html='<img src="'+req.body.content+'"/>';
+  mailOptions.attachments[0].filename=req.body.content.split('/')[3];
+  mailOptions.attachments[0].path=req.body.content;
+  console.log(req.body.content.split('/')[3]);
+  console.log(mailOptions.attachments[0]);
+  console.log(mailOptions.to);
   console.log(req.body.To);
   
   console.log(req.body.content);

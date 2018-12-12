@@ -36,8 +36,7 @@ export class EditComponent implements OnInit {
   private paramsSubscription: Subscription;
   Img: any;
 
-  left:Number=20;
-  top:Number=20;
+  
   grayscaleOn:boolean = false;
   contrastOn:boolean = false;
   blurOn:boolean = false;
@@ -60,11 +59,76 @@ export class EditComponent implements OnInit {
     
     console.log(this.previewService.ImagesInfo);
     this.ImagesInfo=this.previewService.ImagesInfo;
-    this.imageUrl = this.ImagesInfo.localImg;
-    
+    if(this.ImagesInfo.localImg!==undefined)
+    {
+      this.imageUrl = this.ImagesInfo.localImg;
+      console.log(  this.imageUrl);
+    }
+    if(this.ImagesInfo.cloudImg!==undefined)
+    {
+      var imgLink = this.ImagesInfo.cloudImg+"?v="+Math.random();
+    this.imageUrl=  this.getBase64Image(imgLink)
+      console.log(this.imageUrl);
+//  var canvas=document.createElement("canvas");
+// let context = canvas.getContext('2d');
+//  let image =new Image();
+//  image.crossOrigin="Anonymous";
+// //  +"?timeStamp="+new Date()
+//  image.src = ;
+//  console.log(image.src);
+//  image.onload=function()
+//  {  
 
+//    context.drawImage(image,0,0);
     
+//     }
+//     console.log(canvas.toDataURL());
+//     this.imageUrl = canvas.toDataURL();
+//   }
+
+      }
   }
+  getBase64Image(imgLink) {
+    var tempImage = new Image();
+    var dataURL;
+    tempImage.crossOrigin = "*";
+    tempImage.onload = function(){
+      var canvas = document.createElement("canvas");
+      canvas.width = tempImage.width;
+      canvas.height = tempImage.height;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(tempImage, 0, 0, tempImage.width, tempImage.height);
+      var ext = tempImage.src.substring(tempImage.src.lastIndexOf(".")+1).toLowerCase();
+       dataURL = canvas.toDataURL("image/"+ext);
+      var img=document.createElement("img");
+ 
+    }
+    tempImage.src = imgLink;
+   
+}
+//  getBase64Image(img) {
+//   var canvas = document.createElement("canvas");
+//   canvas.width = img.width;
+//   canvas.height = img.height;
+//   var ctx = canvas.getContext("2d");
+//   ctx.drawImage(img, 0, 0, img.width, img.height);
+//   var dataURL = canvas.toDataURL("image/png");  // 可选其他值 image/jpeg
+//   return dataURL;
+// }
+
+//  createdImage(src, cb) {
+//   var image = new Image();
+//   image.src = src + '?v=' + Math.random();
+//   image.crossOrigin = "anonymous";  
+//   image.onload = function(){
+//       var base64 = getBase64Image(image);
+//       cb && cb(base64);
+//   }
+// }
+
+
+
+
   reset() {
     this.imageUrl = null;
     this.croppedImage = null;
@@ -136,29 +200,29 @@ export class EditComponent implements OnInit {
     this.router.navigate(['/confirm']);
   }
 
-  storeAsCanvas(img): any {
-    var shareContent = document.getElementById("display"); //the object dom need save
-    var width = shareContent.offsetWidth; //get dom width
-    var height = shareContent.offsetHeight; //dom height
-    var canvas = document.createElement("canvas"); //create canvas node
-    var scale = 1; //resize the picture
-    canvas.width = width * scale; // define canvas width * scale
-    canvas.height = height * scale; //define canvas height *scale
-    canvas.getContext("2d").scale(scale, scale); //get context,set scale
-    var opts = {
-      scale: scale, // add scale parameter
-      canvas: canvas, // canvas define
-      logging: true, // use log
-      width: width, //dom  original width
-      height: height //dom original height
-    };
-    html2canvas(shareContent, opts).then(canvas => {
-      this.canvasImg = canvas.toDataURL("image/png");
-    });
-    console.log(this.canvasImg)
-    // this.uploadFile(this.canvasImg);
-    // this.downloadFile(new Date(), this.canvasImg);
-  }
+  // storeAsCanvas(img): any {
+  //   var shareContent = document.getElementById("display"); //the object dom need save
+  //   var width = shareContent.offsetWidth; //get dom width
+  //   var height = shareContent.offsetHeight; //dom height
+  //   var canvas = document.createElement("canvas"); //create canvas node
+  //   var scale = 1; //resize the picture
+  //   canvas.width = width * scale; // define canvas width * scale
+  //   canvas.height = height * scale; //define canvas height *scale
+  //   canvas.getContext("2d").scale(scale, scale); //get context,set scale
+  //   var opts = {
+  //     scale: scale, // add scale parameter
+  //     canvas: canvas, // canvas define
+  //     logging: true, // use log
+  //     width: width, //dom  original width
+  //     height: height //dom original height
+  //   };
+  //   html2canvas(shareContent, opts).then(canvas => {
+  //     this.canvasImg = canvas.toDataURL("image/png");
+  //   });
+  //   console.log(this.canvasImg)
+  //   // this.uploadFile(this.canvasImg);
+  //   // this.downloadFile(new Date(), this.canvasImg);
+  // }
 
 
   grayscale(){
