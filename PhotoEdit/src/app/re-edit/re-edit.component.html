@@ -4,6 +4,7 @@
     <div class=" btn-group col-xs-3">
       <button type="button" class="btn btn-default dropdown-toggle" (click)="addText()">
         <span class="glyphicon glyphicon-pencil"></span> AddText </button>
+        <input type="text" [(ngModel)]="text">
     </div>
 
     <div class="btn-group col-xs-3">
@@ -39,7 +40,7 @@
 
 
 
-  <div id="sub">
+  <!-- <div id="sub">
     <div class="row" *ngIf="grayscaleOn">
       <div class="col-xs-6 text-left"><button>-</button></div>
       <div class="col-xs-6 text-right"><button (click)="grayscaleAdd()">+</button></div>
@@ -81,7 +82,7 @@
       <button class="col-xs-6 text-right">+</button>
     </div>
     
-  </div>
+  </div> -->
 </div>
 
 
@@ -94,5 +95,5 @@
   <!-- <mat-slider [(ngModel)]="sliderValue" (change)="onChange()"></mat-slider> -->
   <!-- <angular-cropper #angularCropper [cropperOptions]="config" [imageUrl]="imageUrl"></angular-cropper> -->
   <div><img class="newImage"></div>
-  <div><canvas class="newCanvas" ></canvas></div>
+  <div><canvas class="newCanvas" [ngStyle]="{'width': '800px', 'height': '500px'}"></canvas></div>
 </div>
