@@ -24,10 +24,10 @@ export class PreviewComponent implements OnInit, OnDestroy {
       this.ImagesInfo = data;
     });
     console.log(this.ImagesInfo)
-    this.convertToDataURLviaCanvas(this.ImagesInfo.cloudImg, "image/jpeg")
-    .then( base64Img => {
-       //do whatever you need here, with the base64 data
-    })
+    // this.convertToDataURLviaCanvas(this.ImagesInfo.cloudImg, "image/jpeg")
+    // .then( base64Img => {
+    //    //do whatever you need here, with the base64 data
+    // })
   }
   confirm()
   {

@@ -36,14 +36,16 @@ export class ConfirmComponent implements OnInit {
     this.mails.content="https://myimagebank.oss-us-west-1.aliyuncs.com/1.jpeg";}
   
   ngOnInit() {
-    // this.storeAsCanvas();
+    
     this.imagesInfo=this.previewService.ImagesInfo;
     console.log(this.imagesInfo);
     this.imgUrl = this.imagesInfo.localImg;
-
+  this.storeAsCanvas(this.imgUrl);
+    console.log(this.canvasImg);
   }
   send()
-  {
+  { 
+    this.mails.content=this.canvasImg;
     this.mailService.SendMail(this.mails).subscribe((data)=>{
     });
 
@@ -65,7 +67,7 @@ export class ConfirmComponent implements OnInit {
       .catch(err => {});
   }
 
-  storeAsCanvas(): any {
+  storeAsCanvas(img): any {
     var shareContent = document.getElementById("display"); //the object dom need save
     var width = shareContent.offsetWidth; //get dom width
     var height = shareContent.offsetHeight; //dom height
@@ -84,6 +86,7 @@ export class ConfirmComponent implements OnInit {
     html2canvas(shareContent, opts).then(canvas => {
       this.canvasImg = canvas.toDataURL("image/jpeg");
     });
+    console.log(this.canvasImg)
     // this.uploadFile(this.canvasImg);
     // this.downloadFile(new Date(), this.canvasImg);
   }
