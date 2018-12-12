@@ -1,76 +1,103 @@
-
-
 <div class="container">
-  <div class="row">
-    <button class="col-xs-2 border-bottom"><span class="glyphicon glyphicon-comment"></span> AddText</button>
-    <button class="col-xs-2 border-bottom" (click)="grayscale()"><span class="glyphicon glyphicon-refresh"></span> Grayscale</button>
-    <div *ngIf="grayscaleOn">
-      <button>-</button>
-      <button>+</button>
+  <div id="menu" class="row">
+
+    <div class=" btn-group col-xs-3">
+      <button type="button" class="btn btn-default dropdown-toggle" (click)="grayscale()">
+        <span class="glyphicon glyphicon-pencil"></span> AddText </button>
     </div>
-    <button class="col-xs-2 border-bottom" (click)="saturate()"><span class="glyphicon glyphicon-move"></span> Saturate</button>
-    <div *ngIf="saturateOn">
-        <button>-</button>
-        <button>+</button>
+
+    <div class="btn-group col-xs-3">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <span class="glyphicon glyphicon-tasks"></span> Img Quality <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#" (click)="grayscale()"><span class="	glyphicon glyphicon-random"></span>
+            Grayscale</a></li>
+        <li><a href="#" (click)="saturate()"><span class="glyphicon glyphicon-leaf"></span> Saturate</a></li>
+        <li><a href="#" (click)="contrast()"><span class="glyphicon glyphicon-adjust"></span> Contrast</a></li>
+        <li><a href="#" (click)="blur()"><span class="glyphicon glyphicon-tint"></span> Blur</a></li>
+        <li><a href="#" (click)="brightness()"><span class="glyphicon glyphicon-certificate"></span> Brightness</a></li>
+        <li><a href="#" (click)="opacity()"><span class="glyphicon glyphicon-eye-open"></span> Opacity</a></li>
+        <li><a href="#" (click)="sepia()"><span class="glyphicon glyphicon-map-marker"></span> Sepia</a></li>
+        <li><a href="#" (click)="hue_rotate()"><span class="glyphicon glyphicon-refresh"></span>
+            Hue-rotate</a></li>
+        <li><a href="#" (click)="invert()"><span class="glyphicon glyphicon-move"></span> Invert</a></li>
+        <li><a href="#" (click)="drop_shadow()"><span class="glyphicon glyphicon-resize-full"></span> Drop-shadow</a></li>
+        <li><a href="#" (click)="blur()"><span class="glyphicon glyphicon-flag"></span> Blur</a></li>
+      </ul>
     </div>
-    <button class="col-xs-2 border-bottom" (click)="contrast()"><span class="glyphicon glyphicon-resize-full"></span> Contrast</button>
-    <div *ngIf="contrastOn">
-        <button>-</button>
-        <button>+</button>
+
+    <div class="btn-group col-xs-3">
+      <button type="button" class="btn btn-default dropdown-toggle" (click)="cropEvent()"><span class="glyphicon glyphicon-scissors"></span>
+        Resize</button>
     </div>
-    <button class="col-xs-2 border-bottom" (click)="blur()"><span class="glyphicon glyphicon-scissors"></span> Blur</button>
-    <div *ngIf="blurOn">
-        <button>-</button>
-        <button>+</button>
+
+    <div class="col-xs-3 text-right">
+      <button  type="button" class="btn btn-default dropdown-toggle" (click)="goToConfirm()"><span class="glyphicon glyphicon-ok"></span>
+        Confirm</button>
     </div>
-    <button class="col-xs-2 border-bottom" (click)="brightness()"><span class="glyphicon glyphicon-refresh"></span> Brightness</button>
-    <div *ngIf="brightnessOn">
-      <button>-</button>
-      <button>+</button>
-    </div>
-    <button class="col-xs-2 border-bottom" (click)="hue_rotate()"><span class="glyphicon glyphicon-move"></span> Hue-rotate</button>
-    <div *ngIf="hue_rotateOn">
-        <button>-</button>
-        <button>+</button>
-    </div>
-    <button class="col-xs-2 border-bottom" (click)="invert()"><span class="glyphicon glyphicon-resize-full"></span> Invert</button>
-    <div *ngIf="invertOn">
-        <button>-</button>
-        <button>+</button>
-    </div>
-    <button class="col-xs-2 border-bottom" (click)="drop_shadow()"><span class="glyphicon glyphicon-scissors"></span> Drop-shadow</button>
-    <div *ngIf="drop_shadowOn">
-        <button>-</button>
-        <button>+</button>
-    </div>
-    <button class="col-xs-2 border-bottom" (click)="opacity()"><span class="glyphicon glyphicon-scissors"></span> Opacity</button>
-    <div *ngIf="opacityOn">
-        <button>-</button>
-        <button>+</button>
-    </div>
-    <button class="col-xs-2 border-bottom" (click)="sepia()"><span class="glyphicon glyphicon-scissors"></span> Sepia</button>
-    <div *ngIf="sepiaOn">
-        <button>-</button>
-        <button>+</button>
-    </div>
-    <button class="col-xs-2 border-bottom" (click) = "goToConfirm()"><span span class="glyphicon glyphicon-ok"></span> Confirm</button>
   </div>
 
 
-</div>
-<div class = "img">
- 
-   <!-- <img src="{{ImagesInfo?.localImg||ImagesInfo?.cloudImg}}"
-   [ngStyle]="{'left': left+'px','top':top+'px'}"
-   appImageEditing /> -->
-    <button (click)="zoomIn()">+</button>
-    <button (click)="zoomOut()">-</button>
-    <button (click)="cropEvent()">Crop</button>
-    <mat-slider
-    [(ngModel)]="sliderValue"
-    (change)="onChange()"></mat-slider>
-    <angular-cropper #angularCropper [cropperOptions]="config" [imageUrl]="imageUrl"></angular-cropper>
-    <div *ngIf="croppedImage"><img class="croppedImage" [src]="croppedImage"></div>
-    <canvas #myCanvas></canvas> 
+
+  <div id="sub">
+    <div class="row" *ngIf="grayscaleOn">
+      <div class="col-xs-6 text-left"><button>-</button></div>
+      <div class="col-xs-6 text-right"><button>+</button></div>
+    </div>
+    <div class="row" *ngIf="opacityOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="sepiaOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="drop_shadowOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="invertOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="hue_rotateOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="brightnessOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="blurOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="contrastOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="saturateOn">
+      <button class="col-xs-6 text-left">-</button>
+      <button class="col-xs-6 text-right">+</button>
+    </div>
+    <div class="row" *ngIf="resizeOn">
+      <button (click)="zoomIn()" class="col-xs-6 text-left">-</button>
+      <button (click)="zoomIn()" class="col-xs-6 text-right">+</button>
+    </div>
+  </div>
 </div>
 
+
+
+<div class="img">
+
+  <!-- <img src="{{ImagesInfo?.localImg||ImagesInfo?.cloudImg}}"
+   [ngStyle]="{'left': left+'px','top':top+'px'}"
+   appImageEditing /> -->
+  <mat-slider [(ngModel)]="sliderValue" (change)="onChange()"></mat-slider>
+  <angular-cropper #angularCropper [cropperOptions]="config" [imageUrl]="imageUrl"></angular-cropper>
+  <div *ngIf="croppedImage"><img class="croppedImage" [src]="croppedImage"></div>
+  <canvas #myCanvas></canvas>
+</div>
