@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatSliderModule } from '@angular/material/slider';
+import { AngularCropperjsModule } from 'angular-cropperjs';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,10 +40,13 @@ const appRoutes: Routes = [
     RegisterComponent,
     PoolComponent,
     WelcomeComponent,
-    ImageEditingDirective
+    ImageEditingDirective,
   ],
   imports: [
     BrowserModule,
+    AngularCropperjsModule,
+    MatSliderModule,
+    MatDialogModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,

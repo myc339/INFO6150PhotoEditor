@@ -1,38 +1,50 @@
 .jumbotron {
-    background-color: #ffffff;
-    color: #856f6e;
-  }
-  
-  .glyphicon {
-    color: #856f6e;
-  }
-  
-  
-  
-  strong {
-    font-size: 30px;
-    color: #695251;
-  }
-  
-  input {
-    width: 400px;
-    height: 40px;
-    border: #856f6e 1px solid;
-  }
-  
-  #send {
-    width: 200px;
-    height: 44px;
-    border: 0px;
-    background-color: #ffffff;
-    font-size: 20px;
-    color: #856f6e
-  }
-  
-  button{
-      border: 1px;
-      background-color: #ffffff;
-      font-size: 20px;
-      color: #695251;
-  }
-  
+  background-color: #856f6e;
+  color: #ffffff;
+}
+
+.jumbotron>.glyphicon {
+  color: #ffffff;
+}
+
+
+
+#header>strong {
+  font-size: 30px;
+  color: #ffffff;
+}
+
+#next>strong{
+  font-size: 15px;
+  color: #ffffff
+}
+
+input {
+  width: 400px;
+  height: 40px;
+  border: #ffffff 1px solid;
+  outline: none;
+}
+
+#send {
+  height: 44px;
+  border: 0px;
+  background-color: #856f6e;
+  font-size: 20px;
+  color: #ffffff
+}
+
+#save,#share{
+  height: 44px;
+  border: 0px;
+  background-color: #856f6e;
+  font-size: 15px;
+  color: #ffffff
+}
+
+button{
+  border: 1px;
+  background-color: #ffffff;
+  font-size: 20px;
+  color: #856f6e;
+}
