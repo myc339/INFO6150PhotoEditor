@@ -10,7 +10,7 @@ const app = express();
 var originsWhitelist = [
   'http://localhost:4200',      //this is my front-end url for development
    'http://localhost:3301',
-'https://myimagebank.oss-us-west-1.aliyuncs.com'
+
 
 ];
 var corsOptions = {
@@ -79,7 +79,7 @@ app.options('/sendmail', function (req, res) {
   res.sendStatus(200);
 });
 app.post('/sendmail', function (req, res) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200'); // Change this to your Angular 2 port number
   res.setHeader('Access-Control-Request-Method', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST');
