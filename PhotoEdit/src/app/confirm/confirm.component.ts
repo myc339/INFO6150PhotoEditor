@@ -51,28 +51,32 @@ export class ConfirmComponent implements OnInit {
     this.canvasImg = this.imagesInfo.localImg;
  
   }
+  //send email
   send()
   { 
+    if(this.mails.title == ""){
+      alert("Please input your title");
+      return;
+    }
     if(!this.mails.To.match(this.pattern))
     {
       alert("invalid mail");
       return ;
     }
-    if(this.mails.title == ""){
-      alert("Please input your title");
-      return;
-    }
     if(this.path=="")
     this.path=this.header+this.uploadFile(this.canvasImg);
+    
     this.mails.content= this.path;
     console.log(this.mails.content);
     this.mailService.SendMail(this.mails).subscribe((data)=>{
     });
-
+    alert("send successfully");
   }
+  //download file
   download() {
     this.downloadFile(new Date(), this.canvasImg);
   }
+  //upload to server
   upload() {
     if(this.path=="")
     this.path=this.header+this.uploadFile(this.canvasImg);
@@ -81,7 +85,7 @@ export class ConfirmComponent implements OnInit {
 
     })
   }
-
+  //upload fille
   uploadFile(file) {
     let suffix = ".png";
     let obj = new Date().getTime();
@@ -99,6 +103,7 @@ export class ConfirmComponent implements OnInit {
       });
       return storeAs;
   }
+  //convert image format
    dataURItoFile(dataURI, fileName) {
     
     var byteString = atob(dataURI.split(',')[1]);
@@ -113,7 +118,7 @@ export class ConfirmComponent implements OnInit {
   }
 
   
-
+  //download file
   downloadFile(filename, content) {
     // console.log(content);
     var base64Img = content;
